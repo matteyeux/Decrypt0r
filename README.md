@@ -44,4 +44,4 @@ For this tool I used: <br>
 - xpwn & dmg compiled from https://github.com/planetbeing/xpwn <br>
 - 7zip (developed by Igor Pavlov) <br>
 
-For more information contact me on Twitter: [@matteyeux](https://twitter.com/matteyeux) <br>
+For more informations contact me on Twitter: [@matteyeux](https://twitter.com/matteyeux) <br>

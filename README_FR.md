@@ -41,15 +41,9 @@ Le programme va ensuite decrypter automatiquement
 
 Vous pourrez ensuite faire ce que vous voulez avec.
 
-##TODO
+## Comment compiler ?
 
-- Ajouter une version pour GNU/Linux et OS X
-- Rendre Open Source mon code
-- Cleaner mon code
-- Traduire en anglais
-- Rendre le programme plus simple d'utilisation
-
-
+Pour compiler c'est tout simple, vous vous rendez dans le dossier decrypt0r et vous tapez la commande `make`
 ##Credits
 
 Merci à Jam Elrhk Elro (@Elro74) pour son script Liberati0n et son aide pour le dev.

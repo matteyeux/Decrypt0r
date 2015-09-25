@@ -185,15 +185,21 @@ int ipswDownloader()
 int options()
 {
 	char answer[5];
-	printf("Copy xpwntools in the path ?\n");
+	printf("Copy Decrypt0r in the path ?\n");
 	printf("1) YES\n");
 	printf("2) NON\n");
 	fget(answer, 5);
 
 	if (strcasecmp(answer, "yes")==0 || strcasecmp(answer, "1")==0)
 	{	
+		printf("It will also copy dmg et xpwn\n");
+
 		system("chmod +x xpwn dmg");
-		system("sudo cp xpwn dmg /usr/local/bin");
+		system("sudo cp decrypt0r xpwn dmg /usr/local/bin");
+	}
+	else
+	{
+		return EXIT_SUCCESS;
 	}
 
 }

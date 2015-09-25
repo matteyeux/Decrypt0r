@@ -17,8 +17,6 @@ If you want to modify rootfs (ex Setup.app ASR will reject you ) you can use Tra
 
 ### Encryption of rootfs and creating a Custom fimware
 
-
-
 You can now create your own Custom fimware (need to work more). <br>
 Downgrades are already impossible without SHSHs blobs, on devices that do not have low level exploits. <br>
 Is this fonction useless ? <br>
@@ -28,6 +26,10 @@ Yes, but it can still be used. <br>
 
 To decrypt other firmware components like kernelcache or iBoot, you have to grab the keys from theiphonewiki <br>
 The first one to add is the largest, and the second one is the iv key (the smallest) <br>
+
+### How to build ?
+
+To build Decrypt0r just cd to the decryptr0r directory and run  `make` <br> 
 
 ## TODO
 

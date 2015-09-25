@@ -1,7 +1,4 @@
-#Decrypt0r
-WINDOWS ONLY
-Don't want to dev a Linux/OS X version... lol <br>
-Decrypt0r is a utility which help you to decrypt all the iOS firmware components. <br>
+#Decrypt0r for Linux
 
 ###Rootfs decrypting
 
@@ -16,11 +13,13 @@ In the IPSW file, there is three dmg files, that of rootfs is heaviest. <br>
 
 Then the program is going to work automaticaly. <br>
 
-If you want to modify rootfs (ex Setup.app -ASR will not accept the feat without BootROM firmware) you can use TransMac. <br>
+If you want to modify rootfs (ex Setup.app ASR will reject you ) you can use TransMac for Windows. <br>
 
 ### Encryption of rootfs and creating a Custom fimware
 
-You can now create your own Custom fimware. <br>
+
+
+You can now create your own Custom fimware (need to work more). <br>
 Downgrades are already impossible without SHSHs blobs, on devices that do not have low level exploits. <br>
 Is this fonction useless ? <br>
 Yes, but it can still be used. <br>
@@ -32,7 +31,7 @@ The first one to add is the largest, and the second one is the iv key (the small
 
 ## TODO
 
-- Clean my code <br>
+- Work the improve custom firmwares <br>
 
 ## Credits
 
@@ -42,8 +41,7 @@ Thank you to [Callum Jones](https://twitter.com/icj_) for his awesome website ip
 
 For this tool I used: <br>
 
-- xpwn developed by Planetbeing https://github.com/planetbeing/xpwn <br>
-- dmg.exe (No idea how I got it, if you know where is the source code, contact me). <br>
-- 7zip.exe (developed by Igor Pavlov) <br>
+- xpwn& dmg compiled from https://github.com/planetbeing/xpwn <br>
+- 7zip (developed by Igor Pavlov) <br>
 
 For more information contact me on Twitter: [@matteyeux](https://twitter.com/matteyeux) <br>

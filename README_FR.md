@@ -51,5 +51,5 @@ Pour ce petit outil j'ai utilisé : <br>
 
 - xpwn et dmg developpés par Planetbeing https://github.com/planetbeing/xpwn <br>
 - 7zip.exe (developpé par Igor Pavlov) <br>
-- ipsw.me par [Callum Jones](https://twitter.com/icj_)
+- ipsw.me par [Callum Jones](https://twitter.com/icj_) <br>
 Pour plus d'informations contactez-moi sur Twitter : [@matteyeux](https://twitter.com/matteyeux). <br>

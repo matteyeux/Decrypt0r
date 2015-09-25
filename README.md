@@ -13,7 +13,7 @@ In the IPSW file, there is three dmg files, that of rootfs is heaviest. <br>
 
 Then the program is going to work automaticaly. <br>
 
-If you want to modify rootfs (ex Setup.app ASR will reject you ) you can use TransMac for Windows. <br>
+If you want to modify rootfs (ex Setup.app) you can use TransMac for Windows. <br>
 
 ### Encryption of rootfs and creating a Custom fimware
 

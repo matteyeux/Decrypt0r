@@ -6,9 +6,10 @@
 int main(int argc, char const *argv[])
 {
 	int choice;
-	
+	system("clear");
 	ipswDownloader();
-
+	
+	system("clear");
 	printf("Which file you want to decrypt ?\n");
 	printf(" 1) Root Filesystem\n");
 	printf(" 2) Update Ramdisk\n");

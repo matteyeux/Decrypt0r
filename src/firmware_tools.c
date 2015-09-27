@@ -41,7 +41,7 @@ int rootfs()
 	char decrypt[256];
 	
 	unziper();
-
+	system("clear");
 	printf("Enter the firmware key : ");
 	fget(key, 80);
 
@@ -89,6 +89,7 @@ int Ramdisk()
 	char keyiv[80];
 	
 	unziper();
+	system("clear");
 
 	printf("Enter the Ramdisk name : ");
 	fget(name, 120);
@@ -116,6 +117,7 @@ int IMG3()
 	char keyiv[80];
 
 	unziper();
+	system("clear");
 
 	printf("Enter the IMG3 filename : ");
 	fget(name, 120);
@@ -142,7 +144,7 @@ int manifest()
 	char keyiv[80];
 
 	unziper();
-
+	system("clear");
 	system("cat IPSW/Firmware/all_flash/all_flash.n49ap.production/manifest");
 
 	return 0;
@@ -156,6 +158,8 @@ int ipswDownloader()
 	char buildCommand[1024];
 	char buildCommand2[1024];
 	char firmware [80];
+
+	system("clear");
 
 	printf("Download firmware ?\n");
 	printf("1) YES\n");
@@ -185,6 +189,7 @@ int ipswDownloader()
 int options()
 {
 	char answer[5];
+	system("clear");
 	printf("Copy Decrypt0r in the path ?\n");
 	printf("1) YES\n");
 	printf("2) NON\n");
@@ -196,6 +201,8 @@ int options()
 
 		system("chmod +x xpwn dmg");
 		system("sudo cp decrypt0r xpwn dmg /usr/local/bin");
+
+		printf("Done\n");
 	}
 	else
 	{

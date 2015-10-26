@@ -27,4 +27,7 @@ make
 make package
 tar xvjf XPwn-0.5.8-Linux.tar.bz2
 
-echo "Check the XPwn-0.5.8-Linux folder"
+cd XPwn-0.5.8-Linux
+cp dmg hdutil hfsplus ipsw ticket xpwntool validate /usr/local/bin/
+
+echo "XPwn binaries installed !"

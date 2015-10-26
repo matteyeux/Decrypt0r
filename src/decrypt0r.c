@@ -6,8 +6,8 @@
 int main(int argc, char const *argv[])
 {
 	int choice;
-	system("clear");
-	ipswDownloader();
+	/*system("clear");
+	ipswDownloader();*/
 	
 	system("clear");
 	printf("Which file you want to decrypt ?\n");

@@ -150,7 +150,7 @@ int manifest()
 	return 0;
 }
 
-int ipswDownloader()
+/*int ipswDownloader()
 {
 	char model[80];
 	char choice1[10];
@@ -185,7 +185,7 @@ int ipswDownloader()
 		printf("\n");
 	}
 	return 0;
-}
+}*/
 int options()
 {
 	char answer[5];

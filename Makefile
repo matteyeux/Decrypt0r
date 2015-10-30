@@ -1,7 +1,19 @@
 CC = gcc
+	
+all:
+		@echo 'ERROR: no platform defined.'
+		@echo 'LINUX USERS: make linux'
+		@echo 'MAC OS X USERS: make macosx'
+	 	@echo 'WINDOWS USERS: Use Decrypt0r for Windows'
 
-all : 
-	@echo 'Building Decrypt0r for Linux...'
-	@$(CC) src/decrypt0r.c src/firmware_tools.c src/firmware_tools.h -o decrypt0r
-	@echo 'Succesfully built Decrypt0r for Linux'
+linux : 
+		@echo 'Building Decrypt0r for Linux...'
+		@$(CC) src/decrypt0r.c src/firmware_tools.c src/firmware_tools.h -o decrypt0r
+		@echo 'Succesfully built Decrypt0r for Linux'
+
+macos : 
+		@echo 'Building Decrypt0r for OS X...'
+		@$(CC) src/decrypt0r.c src/firmware_tools.c src/firmware_tools.h 
+		@ mv a.out decrypt0r
+		@echo 'Succesfully built Decrypt0r for Linux'
 

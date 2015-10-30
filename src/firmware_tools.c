@@ -150,7 +150,31 @@ int manifest()
 	return 0;
 }
 
-/*int ipswDownloader()
+int options()
+{
+	char answer[5];
+	system("clear");
+	printf("Copy Decrypt0r in the path ?\n");
+	printf("1) YES\n");
+	printf("2) NON\n");
+	fget(answer, 5);
+
+	if (strcasecmp(answer, "yes")==0 || strcasecmp(answer, "1")==0)
+	{	
+		printf("It will also copy dmg et xpwn\n");
+
+		system("chmod +x xpwn dmg");
+		system("sudo cp decrypt0r xpwn dmg /usr/local/bin");
+
+		printf("Done\n");
+	}
+	else
+	{
+		return EXIT_SUCCESS;
+	}
+}
+
+int ipswDownloader()
 {
 	char model[80];
 	char choice1[10];
@@ -185,31 +209,8 @@ int manifest()
 		printf("\n");
 	}
 	return 0;
-}*/
-int options()
-{
-	char answer[5];
-	system("clear");
-	printf("Copy Decrypt0r in the path ?\n");
-	printf("1) YES\n");
-	printf("2) NON\n");
-	fget(answer, 5);
-
-	if (strcasecmp(answer, "yes")==0 || strcasecmp(answer, "1")==0)
-	{	
-		printf("It will also copy dmg et xpwn\n");
-
-		system("chmod +x xpwn dmg");
-		system("sudo cp decrypt0r xpwn dmg /usr/local/bin");
-
-		printf("Done\n");
-	}
-	else
-	{
-		return EXIT_SUCCESS;
-	}
-
 }
+
 void nBuffer()
 
 {

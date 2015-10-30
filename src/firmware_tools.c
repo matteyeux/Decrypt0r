@@ -172,6 +172,7 @@ int options()
 	{
 		return EXIT_SUCCESS;
 	}
+<<<<<<< HEAD
 }
 
 int ipswDownloader()
@@ -209,6 +210,9 @@ int ipswDownloader()
 		printf("\n");
 	}
 	return 0;
+=======
+
+>>>>>>> origin/master
 }
 
 void nBuffer()

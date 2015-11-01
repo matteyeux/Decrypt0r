@@ -3,7 +3,12 @@
 #RUN THIS SCRIPT AS ROOT
 #Just to help people
 
-echo 'You need to run this script as root'
+
+if [[ "$(whoami)" != "root" ]]; then
+    echo "Please run this script as root"
+    [[ -f "/usr/bin/sudo" ]] && sudo "$0" || su "$0"
+    exit 1
+fi
 
 apt-get -y install git
 apt-get -y install build-essential

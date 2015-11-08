@@ -46,3 +46,5 @@ cd reimagine/opensn0w-X/src && make all
 cd ../.. && make
 
 cp ~/reimagine/reimagine /usr/local/bin/
+
+echo "Installed reimagine !"

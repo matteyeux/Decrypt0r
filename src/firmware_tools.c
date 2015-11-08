@@ -174,6 +174,24 @@ int IMG3()
 	return 0;
 }
 
+int DFU_file()
+{	
+	char name[120];
+	printf("Enter the name of the iBEC/iBSS\n");
+	fget(name, 120);
+
+	printf("Enter the key for %s: ", name);
+	fget(key, 80);
+
+	printf("Enter the key IV for %s: ", name);
+	fget(keyiv, 80);
+
+	sprintf(buildCommand, "xpwntool IPSW/Firmware/dfu/%s %s.dec -k %s -iv %s", name, name, key, keyiv);
+	system(buildCommand);
+
+	printf("%s.dec copied at the folder's root\n", name);
+}
+
 int manifest()
 {
 	char name[120];

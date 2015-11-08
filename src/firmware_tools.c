@@ -176,7 +176,11 @@ int IMG3()
 
 int DFU_file()
 {	
+	char buildCommand[1024];
+	char key[80];
+	char keyiv[80];	
 	char name[120];
+	
 	printf("Enter the name of the iBEC/iBSS\n");
 	fget(name, 120);
 

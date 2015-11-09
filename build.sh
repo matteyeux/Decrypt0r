@@ -22,8 +22,7 @@ apt-get -y install libpng3
 apt-get -y install libusb-1.0.0
 apt-get -y install libusb-1.0.0-dev
 apt-get -y install libssl-dev
-apt-get -y install libssl-dev:i386 #Should work for reimagine
-apt-get -y install clang
+
 cd ~
 git clone https://github.com/xerub/xpwn.git
 mkdir ~/build
@@ -39,6 +38,9 @@ cp dmg hdutil hfsplus ipsw ticket xpwntool validate /usr/local/bin/
 echo "XPwn binaries installed !"
 
 echo "Now installing reimagine..."
+
+apt-get -y install libssl-dev:i386 #Should work for reimagine
+apt-get -y install clang
 
 cd ~ 
 git clone https://github.com/danzatt/reimagine.git #

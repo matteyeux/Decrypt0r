@@ -44,6 +44,10 @@ apt-get -y install clang
 
 cd ~ 
 git clone https://github.com/danzatt/reimagine.git #
+cd reimagine
+rm -rf opensn0w-X
+git clone https://github.com/danzatt/opensn0w-X.git
+cd ~
 cd reimagine/opensn0w-X/src && make all
 cd ../.. && make
 

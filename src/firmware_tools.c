@@ -83,6 +83,11 @@ int rootfs()
 	printf("Enter the firmware key : ");
 	fget(key, 80);
 
+	if (strlen(key) != 64)
+	{
+		printf("Bad key\n");
+		return 2;
+	}
 
 	printf("Entrer rootfs name : ");
 	fget(rootfs, 80);
@@ -135,8 +140,20 @@ int Ramdisk()
 	printf("Enter key for the Ramdisk : ");
 	fget(key, 80);
 
+	if (strlen(key) != 64)
+	{
+		printf("Bad key\n");
+		return 2;
+	}
+
 	printf("Enter IV key for the Ramdisk : ");
 	fget(keyiv, 80);
+
+	if (strlen(key) != 32)
+	{
+		printf("Bad key\n");
+		return 2;
+	}
 
 	sprintf(buildCommand, "./xpwntool IPSW/%s %s.dec -k %s -iv %s ", name, name, key, keyiv);
 	system(buildCommand);
@@ -160,40 +177,30 @@ int IMG3()
 	printf("Enter the IMG3 filename : ");
 	fget(name, 120);
 
+
 	printf("Enter the key for %s: ", name);
 	fget(key, 80);
+
+	if (strlen(key) != 64)
+	{
+		printf("Bad key\n");
+		return 2;
+	}
 
 	printf("Enter the key IV for %s: ", name);
 	fget(keyiv, 80);
 
+	if (strlen(keyiv) != 32)
+	{
+		printf("Bad key\n");
+		return 2;
+	}
 	sprintf(buildCommand, "xpwntool IPSW/Firmware/all_flash/all_flash.n49ap.production/%s %s.dec -k %s -iv %s", name, name, key, keyiv);
 	system(buildCommand);
 
 	printf("%s.dec copied at the folder's root\n", name);
 
 	return 0;
-}
-
-int DFU_file()
-{	
-	char buildCommand[1024];
-	char key[80];
-	char keyiv[80];	
-	char name[120];
-	
-	printf("Enter the name of the iBEC/iBSS\n");
-	fget(name, 120);
-
-	printf("Enter the key for %s: ", name);
-	fget(key, 80);
-
-	printf("Enter the key IV for %s: ", name);
-	fget(keyiv, 80);
-
-	sprintf(buildCommand, "xpwntool IPSW/Firmware/dfu/%s %s.dec -k %s -iv %s", name, name, key, keyiv);
-	system(buildCommand);
-
-	printf("%s.dec copied at the folder's root\n", name);
 }
 
 int manifest()

@@ -203,6 +203,46 @@ int IMG3()
 	return 0;
 }
 
+int DFU_file()
+{
+	char name[120];
+	char buildCommand[1024];
+	char key[80];
+	char keyiv[80];
+
+	unziper();
+	system("clear");
+
+	printf("Enter the IMG3 filename : ");
+	fget(name, 120);
+
+
+	printf("Enter the key for %s: ", name);
+	fget(key, 80);
+
+	if (strlen(key) != 64)
+	{
+		printf("Bad key\n");
+		return 2;
+	}
+
+	printf("Enter the key IV for %s: ", name);
+	fget(keyiv, 80);
+
+	if (strlen(keyiv) != 32)
+	{
+		printf("Bad key\n");
+		return 2;
+	}
+	sprintf(buildCommand, "xpwntool IPSW/Firmware/dfu/%s %s.dec -k %s -iv %s", name, name, key, keyiv);
+	system(buildCommand);
+
+	printf("%s.dec copied at the folder's root\n", name);
+
+	return 0;
+
+}
+
 int manifest()
 {
 	char name[120];

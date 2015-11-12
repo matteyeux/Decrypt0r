@@ -149,7 +149,7 @@ int Ramdisk()
 	printf("Enter IV key for the Ramdisk : ");
 	fget(keyiv, 80);
 
-	if (strlen(key) != 32)
+	if (strlen(keyiv) != 32)
 	{
 		printf("Bad key\n");
 		return 2;

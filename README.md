@@ -1,5 +1,12 @@
-#Decrypt0r for Linux
-
+` (                                                 
+ )\ )                                 )     )      
+(()/(     (      (    (            ( /(  ( /( (    
+ /(_))   ))\  (  )(   )\ )  `  )   )\()) )\()))(   
+(_))_   /((_) )\(()\ (()/(  /(/(  (_))/ ((_)\(()\  
+ |   \ (_))  ((_)((_) )(_))((_)_\ | |_  /  (_)((_) 
+ | |) |/ -_)/ _|| '_|| || || '_ \)|  _|| () || '_| 
+ |___/ \___|\__||_|   \_, || .__/  \__| \__/ |_|   
+                      |__/ |_|                     `
 ###Rootfs decrypting
 
 To decrypt rootfs or other components you have to get keys from https://www.theiphonewiki.com/wiki/Firmware_Keys. <br>

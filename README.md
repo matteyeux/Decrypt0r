@@ -1,12 +1,5 @@
-` (                                                 
- )\ )                                 )     )      
-(()/(     (      (    (            ( /(  ( /( (    
- /(_))   ))\  (  )(   )\ )  `  )   )\()) )\()))(   
-(_))_   /((_) )\(()\ (()/(  /(/(  (_))/ ((_)\(()\  
- |   \ (_))  ((_)((_) )(_))((_)_\ | |_  /  (_)((_) 
- | |) |/ -_)/ _|| '_|| || || '_ \)|  _|| () || '_| 
- |___/ \___|\__||_|   \_, || .__/  \__| \__/ |_|   
-                      |__/ |_|                     `
+#Decrypt0r
+
 ###Rootfs decrypting
 
 To decrypt rootfs or other components you have to get keys from https://www.theiphonewiki.com/wiki/Firmware_Keys. <br>

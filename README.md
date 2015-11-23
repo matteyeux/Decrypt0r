@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 #Decrypt0r for Linux & OS X
 
 ##Big update soon 
-=======
-#Decrypt0r
->>>>>>> origin/master
 
 ###Rootfs decrypting
 
@@ -41,6 +37,7 @@ OS X users you have to build XPwn yourself, I'll made a bin directory with all t
 
 ## TODO
 
+- One project for OS X, GNU/Linux & Windows
 - Something... :) <br>
 
 ## Credits

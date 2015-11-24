@@ -58,4 +58,6 @@ For this tool I used: <br>
 - xpwn & dmg compiled from https://github.com/planetbeing/xpwn <br>
 - 7zip (developed by Igor Pavlov) <br>
 
+- You can download binaries for Linux64 & OS X [here](https://www.dropbox.com/s/r6e5fwae2ff7ecv/XPwn%20binaries.zip?dl=0)
+
 For more informations contact me on Twitter: [@matteyeux](https://twitter.com/matteyeux) or ask this [awesome website](http://www.google.com) (not mine). <br>

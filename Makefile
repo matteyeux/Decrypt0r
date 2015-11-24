@@ -13,7 +13,7 @@ linux :
 
 macos : 
 		@echo 'Building Decrypt0r for OS X...'
-		@$(CC) src/decrypt0r.c src/firmware_tools.c src/firmware_tools.h -lcurl
+		@$(CC) src/decrypt0r.c src/firmware_tools.c src/firmware_tools.h -lcurl -w
 		@ mv a.out decrypt0r
 		@echo 'Succesfully built Decrypt0r for Linux'
 

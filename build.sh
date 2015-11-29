@@ -3,10 +3,6 @@
 #RUN THIS SCRIPT AS ROOT
 #Just to help people
 
-if [[ $(uname) == 'Darwin' ]]; then
-  echo "This script is only for Linux"
-  exit 1
-fi
 
 if [[ "$(whoami)" != "root" ]]; then
     echo "Please run this script as root"

@@ -15,13 +15,13 @@ int main(int argc, char const *argv[])
 	{		
 
 		ipswDownloader();
-		system("clear");
 		printf("Which file you want to decrypt ?\n");
 		printf(" 1) Root Filesystem\n");
 		printf(" 2) Ramdisk\n");
 		printf(" 3) IMG3 File\n");
 		printf(" 4) DFU File\n");
-		printf(" 5) Print manifest\n");
+		printf(" 5) Kernelcache\n");
+		printf(" 6) Print manifest\n");
 
 		printf("Command : ");
 		choice = fgetn();
@@ -32,7 +32,8 @@ int main(int argc, char const *argv[])
 			case 2 : Ramdisk(); break;
 			case 3 : IMG3(); break;
 			case 4 : DFU_file(); break;
-			case 5 : manifest(); break;
+			case 5 : kernelcache(); break;
+			case 6 : manifest(); break;
 			default : printf("No option available yet\n"); 
 		}
 

@@ -1,10 +1,6 @@
-/*
-firmware_tools.c
-*/
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <curl/curl.h>
 
 int unziper()
 {	
@@ -40,9 +36,8 @@ int ipswDownloader()
 	char choice1[10];
 	char version[7];
 	char link[1024];
+	char rep2[3];
 	char firmware [80];
-
-	system("clear");
 
 	printf("Download firmware ?\n");
 	printf("1) YES\n");
@@ -59,18 +54,10 @@ int ipswDownloader()
 
 		printf("Downloading IPSW, please wait...\n");
 		
-		sprintf(link,"http://api.ipsw.me/v2/%s/%s/url/dl",model,version);
-		CURL *session = curl_easy_init(); 
-		curl_easy_setopt(session, CURLOPT_URL, link);
-		FILE * fp = fopen("firmware.ipsw", "w"); 
-		curl_easy_setopt(session,  CURLOPT_WRITEDATA, fp); 
-		curl_easy_setopt(session,  CURLOPT_WRITEFUNCTION, fwrite);
-		curl_easy_perform(session);
-		fclose(fp);
-		curl_easy_cleanup(session);
-
-		system("7z x -oIPSW firmware.ipsw");
-		return 0;
+		sprintf(link,"wget http://api.ipsw.me/v2/%s/%s/url/dl",model,version);
+		system(link);
+		system("rename *.ipsw firmware.ipsw");
+		system("bin\\7z.exe x -oIPSW firmware.ipsw");
 	}
 	else if(strcmp(choice1, "no")==0 || strcmp(choice1, "2")==0)
 	{
@@ -95,7 +82,7 @@ int rootfs()
 	printf("Enter the firmware key : ");
 	fget(key, 80);
 
-	if (strlen(key) != 64)
+	if (strlen(key) != 72)
 	{
 		printf("Bad key\n");
 		return 2;
@@ -182,10 +169,14 @@ int IMG3()
 	char buildCommand[1024];
 	char key[80];
 	char keyiv[80];
+	char boardID[10];
 
 	unziper();
 	system("clear");
 
+	printf("Board ID (e.g n49 for iPhone5,4) : ");
+	fget(boardID, 10);
+	
 	printf("Enter the IMG3 filename : ");
 	fget(name, 120);
 
@@ -207,7 +198,7 @@ int IMG3()
 		printf("Bad key\n");
 		return 2;
 	}
-	sprintf(buildCommand, "xpwntool IPSW/Firmware/all_flash/all_flash.n49ap.production/%s %s.dec -k %s -iv %s", name, name, key, keyiv);
+	sprintf(buildCommand, "xpwntool IPSW/Firmware/all_flash/all_flash.n49ap.production/%s %s.dec -k %s -iv %s", boardID,name, name, key, keyiv);
 	system(buildCommand);
 
 	printf("%s.dec copied at the folder's root\n", name);
@@ -255,17 +246,59 @@ int DFU_file()
 
 }
 
-int manifest()
-{
+int kernelcache()
+{	
+
 	char name[120];
 	char buildCommand[1024];
 	char key[80];
 	char keyiv[80];
 
 	unziper();
-	system("clear");
-	system("cat IPSW/Firmware/all_flash/all_flash.n49ap.production/manifest");
 
+	printf("Enter the kernel filename : ");
+	fget(name, 120);
+
+	printf("Enter the key for %s: ", name);
+	fget(key, 80);
+
+	if (strlen(key) != 64)
+	{
+		printf("Bad key\n");
+		return 2;
+	}
+
+	printf("Enter the key IV for %s: ", name);
+	fget(keyiv, 80);
+
+	if (strlen(keyiv) != 32)
+	{
+		printf("Bad key\n");
+		return 2;
+	}
+
+	sprintf(buildCommand, "xpwntool IPSW/%s %s.dec -k %s -iv %s",name, name, key, keyiv);
+	system(buildCommand);
+
+	printf("%s.dec copied at the folder's root\n", name);
+
+	return 0;
+}
+
+int manifest()
+{
+	char name[120];
+	char buildCommand[1024];
+	char key[80];
+	char keyiv[80];
+	char boardID[10];
+
+	unziper();
+
+	printf("Board ID (e.g n49 for iPhone5,4) : ");
+	fget(boardID, 10);
+	sprintf(buildCommand,"cat IPSW/Firmware/all_flash/all_flash.%sap.production/manifest", boardID);
+	system(buildCommand);
 	return 0;
 }
 
@@ -273,7 +306,7 @@ int options()
 {
 	char answer[5];
 	system("clear");
-	printf("Copy Decrypt0r in the path ?\n");
+	printf("Copy Decrypt0r to the path ?\n");
 	printf("1) YES\n");
 	printf("2) NON\n");
 	fget(answer, 5);

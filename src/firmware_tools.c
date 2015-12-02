@@ -198,7 +198,7 @@ int IMG3()
 		printf("Bad key\n");
 		return 2;
 	}
-	sprintf(buildCommand, "xpwntool IPSW/Firmware/all_flash/all_flash.n49ap.production/%s %s.dec -k %s -iv %s", boardID,name, name, key, keyiv);
+	sprintf(buildCommand, "xpwntool IPSW/Firmware/all_flash/all_flash.%sap.production/%s %s.dec -k %s -iv %s", boardID,name, name, key, keyiv);
 	system(buildCommand);
 
 	printf("%s.dec copied at the folder's root\n", name);

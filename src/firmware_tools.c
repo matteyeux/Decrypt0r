@@ -57,7 +57,7 @@ int ipswDownloader()
 		sprintf(link,"wget http://api.ipsw.me/v2/%s/%s/url/dl",model,version);
 		system(link);
 		system("rename *.ipsw firmware.ipsw");
-		system("bin\\7z.exe x -oIPSW firmware.ipsw");
+		system("7z x -oIPSW firmware.ipsw");
 	}
 	else if(strcmp(choice1, "no")==0 || strcmp(choice1, "2")==0)
 	{
@@ -92,7 +92,7 @@ int rootfs()
 	fget(rootfs, 80);
 	chdir("IPSW");
 	
-	sprintf(decrypt, "./dmg extract %s rootfs_decrypt.dmg -k %s", rootfs, key); 
+	sprintf(decrypt, "dmg extract %s rootfs_decrypt.dmg -k %s", rootfs, key); 
 	system(decrypt);
 
 	printf("Decrypting finished\n");
@@ -154,7 +154,7 @@ int Ramdisk()
 		return 2;
 	}
 
-	sprintf(buildCommand, "./xpwntool IPSW/%s %s.dec -k %s -iv %s ", name, name, key, keyiv);
+	sprintf(buildCommand, "xpwntool IPSW/%s %s.dec -k %s -iv %s ", name, name, key, keyiv);
 	system(buildCommand);
 
 	printf("%s.dec copied at the folder's root\n", name);

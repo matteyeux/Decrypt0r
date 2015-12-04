@@ -13,7 +13,7 @@ if [[ $(uname) != 'Linux' ]]; then
   echo "This script is only for Linux"
   exit 1
 fi
-apt-get install p7zip-full
+apt-get -y install p7zip-full
 apt-get -y install git
 apt-get -y install build-essential
 apt-get -y install make

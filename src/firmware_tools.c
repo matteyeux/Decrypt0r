@@ -56,7 +56,7 @@ int ipswDownloader()
 		
 		sprintf(link,"wget http://api.ipsw.me/v2/%s/%s/url/dl",model,version);
 		system(link);
-		system("rename *.ipsw firmware.ipsw");
+		rename("dl", "firmware.ipsw");
 		system("7z x -oIPSW firmware.ipsw");
 	}
 	else if(strcmp(choice1, "no")==0 || strcmp(choice1, "2")==0)
@@ -79,6 +79,11 @@ int rootfs()
 	
 	unziper();
 	system("clear");
+	
+	printf("Entrer rootfs name : ");
+	fget(rootfs, 80);
+	chdir("IPSW");
+	
 	printf("Enter the firmware key : ");
 	fget(key, 80);
 
@@ -87,10 +92,6 @@ int rootfs()
 		printf("Bad key\n");
 		return 2;
 	}
-
-	printf("Entrer rootfs name : ");
-	fget(rootfs, 80);
-	chdir("IPSW");
 	
 	sprintf(decrypt, "dmg extract %s rootfs_decrypt.dmg -k %s", rootfs, key); 
 	system(decrypt);

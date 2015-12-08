@@ -97,7 +97,8 @@ int rootfs()
 	system(decrypt);
 
 	printf("Decrypting finished\n");
-
+	
+	/*
 	printf("Do you want to reencrypt the firmware ? \n");
 	printf("1) YES\n");
 	printf("2) NO\n");
@@ -120,6 +121,7 @@ int rootfs()
 	{
 		printf("\n"); //normal
 	}
+	*/
 
 	return 0;
 }

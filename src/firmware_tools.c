@@ -56,7 +56,7 @@ int ipswDownloader()
 		
 		sprintf(link,"wget http://api.ipsw.me/v2/%s/%s/url/dl",model,version);
 		system(link);
-		rename("dl", "firmware.ipsw");
+		rename("dl","firmware.ipsw");
 		system("7z x -oIPSW firmware.ipsw");
 	}
 	else if(strcmp(choice1, "no")==0 || strcmp(choice1, "2")==0)
@@ -79,11 +79,6 @@ int rootfs()
 	
 	unziper();
 	system("clear");
-	
-	printf("Entrer rootfs name : ");
-	fget(rootfs, 80);
-	chdir("IPSW");
-	
 	printf("Enter the firmware key : ");
 	fget(key, 80);
 
@@ -92,13 +87,16 @@ int rootfs()
 		printf("Bad key\n");
 		return 2;
 	}
+
+	printf("Entrer rootfs name : ");
+	fget(rootfs, 80);
+	chdir("IPSW");
 	
 	sprintf(decrypt, "dmg extract %s rootfs_decrypt.dmg -k %s", rootfs, key); 
 	system(decrypt);
 
 	printf("Decrypting finished\n");
-	
-	/*
+
 	printf("Do you want to reencrypt the firmware ? \n");
 	printf("1) YES\n");
 	printf("2) NO\n");
@@ -121,7 +119,6 @@ int rootfs()
 	{
 		printf("\n"); //normal
 	}
-	*/
 
 	return 0;
 }
@@ -173,16 +170,20 @@ int IMG3()
 	char key[80];
 	char keyiv[80];
 	char boardID[10];
-
+	char command[80];
+	char img3_dir[1024];
 	unziper();
 	system("clear");
 
-	printf("Board ID (e.g n49 for iPhone5,4) : ");
+	printf("Board ID (e.g n49ap for iPhone5,4) : ");
 	fget(boardID, 10);
 	
 	printf("Enter the IMG3 filename : ");
 	fget(name, 120);
-
+	
+	sprintf(img3_dir,"IPSW/Firmware/all_flash/all_flash.%s.production", boardID);
+	chdir(img3_dir);
+	rename(name, "target");
 
 	printf("Enter the key for %s: ", name);
 	fget(key, 80);
@@ -192,7 +193,7 @@ int IMG3()
 		printf("Bad key\n");
 		return 2;
 	}
-
+	
 	printf("Enter the key IV for %s: ", name);
 	fget(keyiv, 80);
 
@@ -201,29 +202,34 @@ int IMG3()
 		printf("Bad key\n");
 		return 2;
 	}
-	sprintf(buildCommand, "xpwntool IPSW/Firmware/all_flash/all_flash.%sap.production/%s %s.dec -k %s -iv %s", boardID,name, name, key, keyiv);
-	system(buildCommand);
 
-	printf("%s.dec copied at the folder's root\n", name);
+	sprintf(buildCommand,"xpwntool target %s.dec -k %s -iv %s", name, key, keyiv);
+	system(buildCommand);
+	rename("target", name);
+	printf("%s.dec created in %s\n", name,img3_dir);
 
 	return 0;
 }
 
 int DFU_file()
 {
-	char name[120];
+	char dfu_name[120];
 	char buildCommand[1024];
 	char key[80];
 	char keyiv[80];
-
-	unziper();
+	char dfu_dir[80];
+	char test[1024];
+	//unziper();
 	system("clear");
 
-	printf("Enter the IMG3 filename : ");
-	fget(name, 120);
+	printf("Enter the DFU filename : ");
+	fget(dfu_name, 30);
+	
+	sprintf(dfu_dir, "IPSW/Firmware/dfu/");
+	chdir(dfu_dir);
+	rename(dfu_name, "target");
 
-
-	printf("Enter the key for %s: ", name);
+	printf("Enter the key for %s: ", dfu_name);
 	fget(key, 80);
 
 	if (strlen(key) != 64)
@@ -232,7 +238,7 @@ int DFU_file()
 		return 2;
 	}
 
-	printf("Enter the key IV for %s: ", name);
+	printf("Enter the key IV for %s: ", dfu_name);
 	fget(keyiv, 80);
 
 	if (strlen(keyiv) != 32)
@@ -240,13 +246,12 @@ int DFU_file()
 		printf("Bad key\n");
 		return 2;
 	}
-	sprintf(buildCommand, "xpwntool IPSW/Firmware/dfu/%s %s.dec -k %s -iv %s", name, name, key, keyiv);
+
+	sprintf(buildCommand, "xpwntool target %s.dec -k %s -iv %s", dfu_name, key, keyiv);
 	system(buildCommand);
-
-	printf("%s.dec copied at the folder's root\n", name);
-
+	rename("target", dfu_name);
+	printf("%s.dec created in %s\n",dfu_name, dfu_dir);
 	return 0;
-
 }
 
 int kernelcache()
@@ -305,30 +310,6 @@ int manifest()
 	return 0;
 }
 
-int options()
-{
-	char answer[5];
-	system("clear");
-	printf("Copy Decrypt0r to the path ?\n");
-	printf("1) YES\n");
-	printf("2) NON\n");
-	fget(answer, 5);
-
-	if (strcasecmp(answer, "yes")==0 || strcasecmp(answer, "1")==0)
-	{	
-		printf("It will also copy dmg et xpwn\n");
-
-		system("chmod +x xpwn dmg");
-		system("sudo cp decrypt0r xpwn dmg /usr/local/bin");
-
-		printf("Done\n");
-	}
-	else
-	{
-		return EXIT_SUCCESS;
-	}
-
-}
 void nBuffer()
 
 {

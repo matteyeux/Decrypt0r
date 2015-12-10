@@ -41,10 +41,11 @@ OS X users you have to build XPwn yourself, I'll made a bin directory with all t
 
 ## Credits
 
-Thank you to my friend Elrhk ([@Dev__Jam](https://twitter.com/Dev__Jam)) for his help + tests. <br>
-Developed by Mathieu Hautebas ([@matteyeux](https://twitter.com/matteyeux)) <br>
+Thank you to my friend [@Dev__Jam](https://twitter.com/Dev__Jam) for his help + tests. <br>
 Used usefull stuff by [Lilo Colson](https://twitter.com/Pwn1d)
+Reimagine is an awesome tool made by [Danzatt](https://twitter.com/danzatt)
 Thank you to [Callum Jones](https://twitter.com/icj_) for his awesome website ipsw.me.<br>
+Developed by Mathieu Hautebas ([@matteyeux](https://twitter.com/matteyeux)) <br>
 
 For this tool I used: <br>
 

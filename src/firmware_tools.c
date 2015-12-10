@@ -67,7 +67,7 @@ int ipswDownloader()
 }
 
 
-int rootfs()
+int rootfs()						/*repack*/
 {
 	char choice1[10];
 	char rootfs[80];
@@ -79,7 +79,12 @@ int rootfs()
 	
 	unziper();
 	system("clear");
-	printf("Enter the firmware key : ");
+	
+	printf("Entrer rootfs name : ");
+	fget(rootfs, 80);
+	chdir("IPSW");
+	
+	printf("Enter firmware key : ");
 	fget(key, 80);
 
 	if (strlen(key) != 72)
@@ -88,16 +93,13 @@ int rootfs()
 		return 2;
 	}
 
-	printf("Entrer rootfs name : ");
-	fget(rootfs, 80);
-	chdir("IPSW");
-	
 	sprintf(decrypt, "dmg extract %s rootfs_decrypt.dmg -k %s", rootfs, key); 
 	system(decrypt);
 
 	printf("Decrypting finished\n");
 
-	printf("Do you want to reencrypt the firmware ? \n");
+	/*You won't be able to make a custom firmware or bypass iCloud, it's not easier than you think*/
+	/*printf("Do you want to reencrypt the firmware ? \n");
 	printf("1) YES\n");
 	printf("2) NO\n");
 	fget(choice1, 10);
@@ -119,7 +121,7 @@ int rootfs()
 	{
 		printf("\n"); //normal
 	}
-
+*/	
 	return 0;
 }
 
@@ -164,7 +166,6 @@ int Ramdisk()
 
 int IMG3()
 {	
-
 	char name[120];
 	char buildCommand[1024];
 	char key[80];
@@ -184,6 +185,8 @@ int IMG3()
 	sprintf(img3_dir,"IPSW/Firmware/all_flash/all_flash.%s.production", boardID);
 	chdir(img3_dir);
 	rename(name, "target");
+	system("ls");
+	getchar();
 
 	printf("Enter the key for %s: ", name);
 	fget(key, 80);
@@ -219,7 +222,7 @@ int DFU_file()
 	char keyiv[80];
 	char dfu_dir[80];
 	char test[1024];
-	//unziper();
+	unziper();
 	system("clear");
 
 	printf("Enter the DFU filename : ");
@@ -290,6 +293,34 @@ int kernelcache()
 
 	printf("%s.dec copied at the folder's root\n", name);
 
+	return 0;
+}
+
+int patcher()
+{	
+	char decrypt_choice[10], name[30], command[1024], filename[1024];
+	printf("Before patching iBEC or iBSS you need to decrypt it\nDo you want to decrypt a file?\n1) YES\n2) NO\n");
+	fget(decrypt_choice,10);
+	if (strcmp(decrypt_choice, "1")==0 || strcmp(decrypt_choice, "YES")==0 || strcmp(decrypt_choice, "yes")==0)
+	{
+		DFU_file();
+		//printf("Copy decrypted \n");
+		printf("Enter name of decrypted iBEC/iBSS : ");
+		fget(name, 30);
+		sprintf(command, "reimagine %s ../../../%s.patch -p", name, name);
+		system(command);
+		printf("Patch created at the root of this folder\n");
+	}
+	else
+	{   
+		printf("Copy file at the root of this folder and press [enter]\n");
+		getchar();
+		printf("filename : ");
+		fget(filename, 120);
+		sprintf(command, "reimagine %s %s.patch -p", filename, filename);
+		system(command);
+		printf("Patch created at the root of this folder\n");
+	}
 	return 0;
 }
 

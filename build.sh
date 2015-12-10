@@ -42,21 +42,21 @@ cp dmg hdutil hfsplus ipsw ticket xpwntool validate /usr/local/bin/
 
 echo "XPwn binaries installed !"
 
-#Not ready yet
-# echo "Now installing reimagine..."
 
-# apt-get -y install libssl-dev:i386 #Should work for reimagine
-# apt-get -y install clang
+echo "Now installing reimagine..."
 
-# cd ~ 
-# git clone https://github.com/danzatt/reimagine.git #
-# cd reimagine
-# rm -rf opensn0w-X
-# git clone https://github.com/danzatt/opensn0w-X.git
-# cd ~
-# cd reimagine/opensn0w-X/src && make all
-# cd ../.. && make
+apt-get -y install libssl-dev:i386 #Should work for reimagine
+apt-get -y install clang
 
-# cp ~/reimagine/reimagine /usr/local/bin/
+cd ~ 
+git clone https://github.com/danzatt/reimagine.git #
+cd reimagine
+rm -rf opensn0w-X
+git clone https://github.com/danzatt/opensn0w-X.git
+cd ~
+cd reimagine/opensn0w-X/src && make all
+cd ../.. && make
 
-# echo "Installed reimagine !"
+cp ~/reimagine/reimagine /usr/local/bin/
+
+echo "Installed reimagine !"

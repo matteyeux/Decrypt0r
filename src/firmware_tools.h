@@ -8,6 +8,7 @@ int Ramdisk();
 int IMG3();
 int DFU_file();
 int kernelcache();
+int patcher();
 int manifest();
 int fget(char *chain, int sizee);
 int fgetn();

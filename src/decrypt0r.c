@@ -8,44 +8,30 @@ decrypt0r.c
 
 int main(int argc, char const *argv[])
 {
-	int choice;
-	char loop[5];
-
-	while(1)
-	{		
-
-		ipswDownloader();
-		printf("Which file you want to decrypt ?\n");
-		printf(" 1) Root Filesystem\n");
-		printf(" 2) Ramdisk\n");
-		printf(" 3) IMG3 File\n");
-		printf(" 4) DFU File\n");
-		printf(" 5) Kernelcache\n");
-		printf(" 6) Print manifest\n");
-
-		printf("Command : ");
-		choice = fgetn();
+	int choice_of_your_life;
 	
-		switch (choice)
-		{
-			case 1 : rootfs(); break;
-			case 2 : Ramdisk(); break;
-			case 3 : IMG3(); break;
-			case 4 : DFU_file(); break;
-			case 5 : kernelcache(); break;
-			case 6 : manifest(); break;
-			default : printf("No option available yet\n"); 
-		}
+	system("clear");
+	ipswDownloader();
+	system("clear");
+	printf("Choose what you want to do\n");
+	printf(" 1) Decrypt Root Filesystem\n"); //encrypt ou decrypt
+	printf(" 2) Decrypt Ramdisk\n");
+	printf(" 3) Decrypt IMG3 File\n");
+	printf(" 4) Decrypt DFU File\n");
+	printf(" 5) Decrypt Kernelcache\n");
+	printf(" 6) Patch iBEC/iBSS\n");
+	printf("Command : ");
+	choice_of_your_life = fgetn();
 
-		printf("Decrypt another componment ?\n");
-		printf("1) YES\n");
-		printf("2) NO\n");
-		fget(loop, 5);
-
-		if (strcmp(loop, "no")==0 || strcmp(loop, "2")==0)
-		{
-			printf("Exiting...\n");
-			return EXIT_SUCCESS;
-		}
-	}	
+	switch (choice_of_your_life)
+	{
+		case 1 : rootfs(); break;
+		case 2 : Ramdisk(); break;
+		case 3 : IMG3(); break;
+		case 4 : DFU_file(); break;
+		case 5 : kernelcache(); break;
+		case 6 : patcher(); break;
+		default : printf("No option available yet\n"); 
+	}
+	return 0;	
 }

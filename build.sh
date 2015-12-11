@@ -1,8 +1,27 @@
 #!/bin/bash
-#Script written by matteyeux
-#RUN THIS SCRIPT AS ROOT
-#Just to help people
-
+#######################################################################
+#
+#  Project......: setup.sh
+#  Creator......: matteyeux
+#  Description..: Script to install usefull tools for Decrypt0r
+#
+######################################################################
+# Language :
+#               bash
+# Version : 0.2
+#
+#  Change Log
+#  ==========
+#
+#   ===============================================================
+#    Date     |       Who          |      What
+#   ---------------------------------------------------------------
+#    04/10/15 | Mathieu Hautebas   | Script creation
+#   ---------------------------------------------------------------
+#    10/12/15 | Mathieu Hautebas   | Added cool things
+#   ---------------------------------------------------------------
+#    11/12/15 | Mathieu Hautebas   | Added savethemblobs
+#   ---------------------------------------------------------------
 
 if [[ "$(whoami)" != "root" ]]; then
     echo "Please run this script as root"
@@ -27,6 +46,7 @@ apt-get -y install libusb-1.0.0
 apt-get -y install libusb-1.0.0-dev
 apt-get -y install libssl-dev
 apt-get -y install libcurl3
+apt-get -y install python-pip
 
 cd ~
 git clone https://github.com/xerub/xpwn.git
@@ -60,3 +80,8 @@ cd ../.. && make
 cp ~/reimagine/reimagine /usr/local/bin/
 
 echo "Installed reimagine !"
+echo "Downloading Savethemblobs..."
+cd ~
+git clone https://github.com/Neal/savethemblobs.git
+cp savethemblobs/savethemblobs.py /usr/local/bin/
+echo "Installed Savethemblobs"

@@ -20,6 +20,7 @@ int main(int argc, char const *argv[])
 	printf(" 4) Decrypt DFU File\n");
 	printf(" 5) Decrypt Kernelcache\n");
 	printf(" 6) Patch iBEC/iBSS\n");
+	printf(" 7) Save SHSHs blobs\n");
 	printf("Command : ");
 	choice_of_your_life = fgetn();
 
@@ -31,6 +32,7 @@ int main(int argc, char const *argv[])
 		case 4 : DFU_file(); break;
 		case 5 : kernelcache(); break;
 		case 6 : patcher(); break;
+		case 7 : save_blobs(); break;
 		default : printf("No option available yet\n"); 
 	}
 	return 0;	

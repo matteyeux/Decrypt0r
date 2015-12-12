@@ -324,6 +324,19 @@ int patcher()
 	return 0;
 }
 
+int save_blobs()
+{	
+	char ecid[15], model[10], command[256];
+	printf("ECID : ");
+	fget(ecid, 15);
+	printf("model (e.g iPhone5,4 for iPhone 5C) : ");
+	fget(model, 10);
+	sprintf(command, "savethemblobs.py --no-submit-cydia --skip-cydia --skip-ifaith 0x%s %s", ecid, model);
+	system(command);
+	printf("Blobs saved to ~/.shsh\n");
+
+}
+
 int manifest()
 {
 	char name[120];

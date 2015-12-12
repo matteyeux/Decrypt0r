@@ -1,6 +1,4 @@
-#Decrypt0r for Linux & OS X
-
-##Big update soon 
+#Decrypt0r
 
 ###Rootfs decrypting
 
@@ -23,33 +21,38 @@ Downgrades are already impossible without SHSHs blobs, on devices that do not ha
 Is this feature useless ? <br>
 Yes, but it can still be used. <br>
 
-#Other components
+#IMG3
 
-To decrypt other firmware components like kernelcache or iBoot, you have to grab the keys from theiphonewiki <br>
+To decrypt IMG3 files like kernelcache or iBoot, you have to grab the keys from theiphonewiki <br>
 The first one to add is the largest, and the second one is the iv key (the smallest).<br>
+Then follow instructions.<br>
 
-### How to build it?
+###How to build it?
 
 To build Decrypt0r just cd to the decryptr0r directory and run `make + your_os` <br> 
 
 If you need to build XPwn for Linux, just run `build.sh`.
 OS X users you have to build XPwn yourself, I'll made a bin directory with all the binaries ASAP
 
-## TODO
+###Compatibility
 
-- Something... :) <br>
+Decrypt0r is compatible with Linux & OS X, Windows users, check [Decrypt0r for Windows](https://github.com/matteyeux/Decrypt0r-for-Windows)<br>
 
 ## Credits
 
-Thank you to my friend [@Dev__Jam](https://twitter.com/Dev__Jam) for his help + tests. <br>
-Used usefull stuff by [Lilo Colson](https://twitter.com/Pwn1d)
-Reimagine is an awesome tool made by [Danzatt](https://twitter.com/danzatt)
-Thank you to [Callum Jones](https://twitter.com/icj_) for his awesome website ipsw.me.<br>
+Thank you to : 
+My friend [@Dev__Jam](https://twitter.com/Dev__Jam) for his help + tests. <br>
+The usefull stuff by [Lilo Colson](https://twitter.com/Pwn1d)
+Reimagine tool made by [Danzatt](https://twitter.com/danzatt)
+[Callum Jones](https://twitter.com/icj_) for his awesome website ipsw.me.<br>
+[iNeal](https://twitter.com/iNeal) for savethemblobs
 Developed by Mathieu Hautebas ([@matteyeux](https://twitter.com/matteyeux)) <br>
 
 For this tool I used: <br>
 
-- xpwn & dmg compiled from https://github.com/planetbeing/xpwn <br>
+- xpwn & dmg compiled from https://github.com/xerub/xpwn <br>
 - 7zip (developed by Igor Pavlov) <br>
+- Reimagine
+- Savethemblobs
 
 For more informations contact me on Twitter: [@matteyeux](https://twitter.com/matteyeux) or ask this [awesome website](http://www.google.com) (not mine). <br>

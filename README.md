@@ -21,7 +21,7 @@ Downgrades are already impossible without SHSHs blobs, on devices that do not ha
 Is this feature useless ? <br>
 Yes, but it can still be used. <br>
 
-#IMG3
+###IMG3
 
 To decrypt IMG3 files like kernelcache or iBoot, you have to grab the keys from theiphonewiki <br>
 The first one to add is the largest, and the second one is the iv key (the smallest).<br>
@@ -37,6 +37,9 @@ OS X users you have to build XPwn yourself, I'll made a bin directory with all t
 ###Compatibility
 
 Decrypt0r is compatible with Linux & OS X, Windows users, check [Decrypt0r for Windows](https://github.com/matteyeux/Decrypt0r-for-Windows)<br>
+
+###Binaries
+For people who doesn't want to run my script or are running OS X you have the possibility to download this file which contains OS X & Linux64 binaries : Download [here](https://www.dropbox.com/s/r6e5fwae2ff7ecv/XPwn%20binaries.zip?dl=0)
 
 ## Credits
 

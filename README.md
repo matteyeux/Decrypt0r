@@ -46,10 +46,10 @@ Download [here](https://www.dropbox.com/s/r6e5fwae2ff7ecv/XPwn%20binaries.zip?dl
 
 Thank you to : 
 My friend [@Dev__Jam](https://twitter.com/Dev__Jam) for his help + tests. <br>
-The usefull stuff by [Lilo Colson](https://twitter.com/Pwn1d)
-Reimagine tool made by [Danzatt](https://twitter.com/danzatt)
+The usefull stuff by [Lilo Colson](https://twitter.com/Pwn1d) <br>
+Reimagine tool made by [Danzatt](https://twitter.com/danzatt) <br>
 [Callum Jones](https://twitter.com/icj_) for his awesome website ipsw.me.<br>
-[iNeal](https://twitter.com/iNeal) for savethemblobs
+[iNeal](https://twitter.com/iNeal) for savethemblobs <br>
 Developed by Mathieu Hautebas ([@matteyeux](https://twitter.com/matteyeux)) <br>
 
 For this tool I used: <br>

@@ -54,9 +54,8 @@ int ipswDownloader()
 
 		printf("Downloading IPSW, please wait...\n");
 		
-		sprintf(link,"wget http://api.ipsw.me/v2/%s/%s/url/dl",model,version);
+		sprintf(link,"wget http://api.ipsw.me/v2/%s/%s/url/dl -O firmware.ipsw",model,version);
 		system(link);
-		rename("dl","firmware.ipsw");
 		system("7z x -oIPSW firmware.ipsw");
 	}
 	else if(strcmp(choice1, "no")==0 || strcmp(choice1, "2")==0)
@@ -185,8 +184,6 @@ int IMG3()
 	sprintf(img3_dir,"IPSW/Firmware/all_flash/all_flash.%s.production", boardID);
 	chdir(img3_dir);
 	rename(name, "target");
-	system("ls");
-	getchar();
 
 	printf("Enter the key for %s: ", name);
 	fget(key, 80);

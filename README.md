@@ -1,5 +1,17 @@
 #Decrypt0r
 
+```
+Choose what you want to do
+ 1) Decrypt Root Filesystem
+ 2) Decrypt Ramdisk
+ 3) Decrypt IMG3 File
+ 4) Decrypt DFU File
+ 5) Decrypt Kernelcache
+ 6) Patch iBEC/iBSS
+ 7) Save SHSHs blobs
+Command :
+```
+
 ###Rootfs decrypting
 
 To decrypt rootfs or other components like IMG3 files you have to grab keys from [iPhonewiki](https://www.theiphonewiki.com/wiki/Firmware_Keys). <br>

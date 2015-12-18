@@ -53,7 +53,7 @@ Decrypt0r is compatible with Linux & OS X, Windows users, check [Decrypt0r for W
 ###Binaries
 For people who doesn't want to run my script or are running OS X you have the possibility to download this file which contains OS X, Linux64 & Raspberry Pi binaries<br>
 Download [here](https://www.dropbox.com/s/r6e5fwae2ff7ecv/XPwn%20binaries.zip?dl=0)
-
+If you want to download an IPSW file from the tool you should install [wget](http://rudix.org/packages/wget.html)
 ## Credits
 
 Thank you to : 

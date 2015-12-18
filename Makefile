@@ -3,7 +3,7 @@ CC = gcc
 all:
 		@echo 'ERROR: no platform defined.'
 		@echo 'LINUX USERS: make linux'
-		@echo 'MAC OS X USERS: make macosx'
+		@echo 'MAC OS X USERS: make macos'
 	 	@echo 'WINDOWS USERS: Use Decrypt0r for Windows'
 
 linux : 

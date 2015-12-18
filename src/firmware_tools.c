@@ -36,8 +36,6 @@ int ipswDownloader()
 	char choice1[10];
 	char version[7];
 	char link[1024];
-	char rep2[3];
-	char firmware [80];
 
 	printf("Download firmware ?\n");
 	printf("1) YES\n");
@@ -68,10 +66,10 @@ int ipswDownloader()
 
 int rootfs()						/*repack*/
 {
-	char choice1[10];
+	char choice[4];
 	char rootfs[80];
 	char buildCommand[1024];
-	char buildCommand2[1024];
+	char rootfs_def[1024];
 	char key[80];
 	char keyiv[80];
 	char decrypt[256];
@@ -98,29 +96,29 @@ int rootfs()						/*repack*/
 	printf("Decrypting finished\n");
 
 	/*You won't be able to make a custom firmware or bypass iCloud, it's not easier than you think*/
-	/*printf("Do you want to reencrypt the firmware ? \n");
+	printf("Repack firmware ? \n");
 	printf("1) YES\n");
 	printf("2) NO\n");
-	fget(choice1, 10);
+	fget(choice, 4);
 
-	if (strcmp(choice1, "yes")==0 || strcmp(choice1, "1")==0)
+	if (strcmp(choice, "yes")==0 || strcmp(choice, "1")==0)
 	{
 		printf("Building rootfs...\n");
-		sprintf(buildCommand2, "%s", rootfs);
-		remove(buildCommand2);
-		sprintf(buildCommand,"./dmg build rootfs_decrypt.dmg %s", rootfs);
+		sprintf(rootfs_def, "%s", rootfs);
+		remove(rootfs_def);
+		sprintf(buildCommand,"dmg build rootfs_decrypt.dmg %s", rootfs);
 		system(buildCommand);
 
-		printf("Compressing IPSW...\n");
+		printf("Repacking IPSW...\n");
 		system("7z u -tzip -mx0 custom_firmware.ipsw -x!7z");
 
-		printf("Your custom firmware has been created\n");			
+		printf("Firmware packed !\n");			
 	}
-	else if(strcmp(choice1, "no")==0 || strcmp(choice1, "2")==0)
+	else if(strcmp(choice, "no")==0 || strcmp(choice, "2")==0)
 	{
 		printf("\n"); //normal
 	}
-*/	
+
 	return 0;
 }
 
@@ -134,6 +132,7 @@ int Ramdisk()
 	unziper();
 	system("clear");
 
+	chdir("IPSW");
 	printf("Enter the Ramdisk name : ");
 	fget(name, 120);
 
@@ -155,7 +154,7 @@ int Ramdisk()
 		return 2;
 	}
 
-	sprintf(buildCommand, "xpwntool IPSW/%s %s.dec -k %s -iv %s ", name, name, key, keyiv);
+	sprintf(buildCommand, "dmg %s %s.dec -k %s -iv %s ", name, name, key, keyiv);
 	system(buildCommand);
 
 	printf("%s.dec copied at the folder's root\n", name);

@@ -51,22 +51,22 @@ OS X users you have to build XPwn yourself, I'll made a bin directory with all t
 Decrypt0r is compatible with Linux & OS X, Windows users, check [Decrypt0r for Windows](https://github.com/matteyeux/Decrypt0r-for-Windows)<br>
 
 ###Binaries
-For people who doesn't want to run my script or are running OS X you have the possibility to download this file which contains OS X & Linux64 binaries<br>
+For people who doesn't want to run my script or are running OS X you have the possibility to download this file which contains OS X, Linux64 & Raspberry Pi binaries<br>
 Download [here](https://www.dropbox.com/s/r6e5fwae2ff7ecv/XPwn%20binaries.zip?dl=0)
 
 ## Credits
 
 Thank you to : 
-My friend [@Dev__Jam](https://twitter.com/Dev__Jam) for his help + tests. <br>
-The usefull stuff by [Lilo Colson](https://twitter.com/Pwn1d) <br>
+My friend [@Dev__Jam](https://twitter.com/Dev__Jam) for a part of a batch file code. <br>
+Some functions by  [Lilo Colson](https://twitter.com/Pwn1d) <br>
 Reimagine tool made by [Danzatt](https://twitter.com/danzatt) <br>
-[Callum Jones](https://twitter.com/icj_) for his awesome website ipsw.me.<br>
+[Callum Jones](https://twitter.com/icj_) for his awesome website ipsw.me & API .<br>
 [iNeal](https://twitter.com/iNeal) for savethemblobs <br>
 Developed by Mathieu Hautebas ([@matteyeux](https://twitter.com/matteyeux)) <br>
 
 For this tool I used: <br>
 
-- xpwn & dmg compiled from https://github.com/xerub/xpwn <br>
+- XPwn compiled from https://github.com/xerub/xpwn <br>
 - 7zip (developed by Igor Pavlov) <br>
 - Reimagine
 - Savethemblobs

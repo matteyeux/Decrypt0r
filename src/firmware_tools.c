@@ -139,7 +139,7 @@ int Ramdisk()
 	printf("Enter key for the Ramdisk : ");
 	fget(key, 80);
 
-	if (strlen(key) != 64)
+	if (strlen(key) != 64 || strlen(key) != 32)
 	{
 		printf("Bad key\n");
 		return 2;
@@ -187,7 +187,7 @@ int IMG3()
 	printf("Enter the key for %s: ", name);
 	fget(key, 80);
 
-	if (strlen(key) != 64)
+	if (strlen(key) != 64 || strlen(key) != 32)
 	{
 		printf("Bad key\n");
 		return 2;
@@ -231,7 +231,7 @@ int DFU_file()
 	printf("Enter the key for %s: ", dfu_name);
 	fget(key, 80);
 
-	if (strlen(key) != 64)
+	if (strlen(key) != 64 || strlen(key) != 32)
 	{
 		printf("Bad key\n");
 		return 2;
@@ -269,7 +269,7 @@ int kernelcache()
 	printf("Enter the key for %s: ", name);
 	fget(key, 80);
 
-	if (strlen(key) != 64)
+	if (strlen(key) != 64 || strlen(key) != 32)
 	{
 		printf("Bad key\n");
 		return 2;
@@ -300,7 +300,6 @@ int patcher()
 	if (strcmp(decrypt_choice, "1")==0 || strcmp(decrypt_choice, "YES")==0 || strcmp(decrypt_choice, "yes")==0)
 	{
 		DFU_file();
-		//printf("Copy decrypted \n");
 		printf("Enter name of decrypted iBEC/iBSS : ");
 		fget(name, 30);
 		sprintf(command, "reimagine %s ../../../%s.patch -p", name, name);

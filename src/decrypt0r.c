@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
 	ipswDownloader();
 	system("clear");
 	printf("Choose what you want to do\n");
-	printf(" 1) Decrypt Root Filesystem\n"); //encrypt ou decrypt
+	printf(" 1) Decrypt Root Filesystem\n");
 	printf(" 2) Decrypt Ramdisk\n");
 	printf(" 3) Decrypt IMG3 File\n");
 	printf(" 4) Decrypt DFU File\n");

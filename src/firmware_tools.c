@@ -84,12 +84,6 @@ int rootfs()						/*repack*/
 	printf("Enter firmware key : ");
 	fget(key, 80);
 
-	if (strlen(key) != 72)
-	{
-		printf("Bad key\n");
-		return 2;
-	}
-
 	sprintf(decrypt, "dmg extract %s rootfs_decrypt.dmg -k %s", rootfs, key); 
 	system(decrypt);
 
@@ -139,20 +133,8 @@ int Ramdisk()
 	printf("Enter key for the Ramdisk : ");
 	fget(key, 80);
 
-	if (strlen(key) != 64 || strlen(key) != 32)
-	{
-		printf("Bad key\n");
-		return 2;
-	}
-
 	printf("Enter IV key for the Ramdisk : ");
 	fget(keyiv, 80);
-
-	if (strlen(keyiv) != 32)
-	{
-		printf("Bad key\n");
-		return 2;
-	}
 
 	sprintf(buildCommand, "dmg %s %s.dec -k %s -iv %s ", name, name, key, keyiv);
 	system(buildCommand);
@@ -186,21 +168,9 @@ int IMG3()
 
 	printf("Enter the key for %s: ", name);
 	fget(key, 80);
-
-	if (strlen(key) != 64 || strlen(key) != 32)
-	{
-		printf("Bad key\n");
-		return 2;
-	}
 	
 	printf("Enter the key IV for %s: ", name);
 	fget(keyiv, 80);
-
-	if (strlen(keyiv) != 32)
-	{
-		printf("Bad key\n");
-		return 2;
-	}
 
 	sprintf(buildCommand,"xpwntool target %s.dec -k %s -iv %s", name, key, keyiv);
 	system(buildCommand);
@@ -231,20 +201,8 @@ int DFU_file()
 	printf("Enter the key for %s: ", dfu_name);
 	fget(key, 80);
 
-	if (strlen(key) != 64 || strlen(key) != 32)
-	{
-		printf("Bad key\n");
-		return 2;
-	}
-
 	printf("Enter the key IV for %s: ", dfu_name);
 	fget(keyiv, 80);
-
-	if (strlen(keyiv) != 32)
-	{
-		printf("Bad key\n");
-		return 2;
-	}
 
 	sprintf(buildCommand, "xpwntool target %s.dec -k %s -iv %s", dfu_name, key, keyiv);
 	system(buildCommand);
@@ -269,20 +227,9 @@ int kernelcache()
 	printf("Enter the key for %s: ", name);
 	fget(key, 80);
 
-	if (strlen(key) != 64 || strlen(key) != 32)
-	{
-		printf("Bad key\n");
-		return 2;
-	}
 
 	printf("Enter the key IV for %s: ", name);
 	fget(keyiv, 80);
-
-	if (strlen(keyiv) != 32)
-	{
-		printf("Bad key\n");
-		return 2;
-	}
 
 	sprintf(buildCommand, "xpwntool IPSW/%s %s.dec -k %s -iv %s",name, name, key, keyiv);
 	system(buildCommand);

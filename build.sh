@@ -12,7 +12,7 @@
 #
 #  Change Log
 #  ==========
-#
+#	 DD/MM/YY
 #   ===============================================================
 #    Date     |       Who          |      What
 #   ---------------------------------------------------------------
@@ -21,6 +21,8 @@
 #    10/12/15 | Mathieu Hautebas   | Added cool things
 #   ---------------------------------------------------------------
 #    11/12/15 | Mathieu Hautebas   | Added savethemblobs
+#   ---------------------------------------------------------------
+#    29/12/15 | Mathieu Hautebas   | iOS Utilities install 
 #   ---------------------------------------------------------------
 
 if [[ "$(whoami)" != "root" ]]; then
@@ -85,3 +87,9 @@ cd ~
 git clone https://github.com/Neal/savethemblobs.git
 cp savethemblobs/savethemblobs.py /usr/local/bin/
 echo "Installed Savethemblobs"
+
+cd ~ 
+git clone https://github.com/matteyeux/iOS-Utilities.git
+cd iOS-Utilities
+make
+make install

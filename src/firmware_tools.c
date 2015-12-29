@@ -218,23 +218,45 @@ int kernelcache()
 	char buildCommand[1024];
 	char key[80];
 	char keyiv[80];
+	char machO[5];
 
 	unziper();
 
-	printf("Enter the kernel filename : ");
-	fget(name, 120);
+	printf("Extract kernel into MachO file ?\n1) YES\n2) NO\n");
+	fget(machO, 5);
+	
+	if (strcmp(machO, "yes")==0 || strcmp(machO, "YES")==0 || strcmp(machO, "1")==0)
+	{
+		printf("Enter the kernel filename : ");
+		fget(name, 120);
 
-	printf("Enter the key for %s: ", name);
-	fget(key, 80);
+		printf("Enter the key for %s: ", name);
+		fget(key, 80);
 
 
-	printf("Enter the key IV for %s: ", name);
-	fget(keyiv, 80);
+		printf("Enter the key IV for %s: ", name);
+		fget(keyiv, 80);
 
-	sprintf(buildCommand, "xpwntool IPSW/%s %s.dec -k %s -iv %s",name, name, key, keyiv);
-	system(buildCommand);
+		sprintf(buildCommand, "reimagine IPSW/%s kernel.macho -iv %s -k %s -x -r", name, keyiv, key);
+		system(buildCommand);
+	}
+	else if (strcmp(machO, "no")==0 || strcmp(machO, "NO")==0 || strcmp(machO, "2")==0)
+	{
+		printf("Enter the kernel filename : ");
+		fget(name, 120);
 
-	printf("%s.dec copied at the folder's root\n", name);
+		printf("Enter the key for %s: ", name);
+		fget(key, 80);
+
+
+		printf("Enter the key IV for %s: ", name);
+		fget(keyiv, 80);
+
+		sprintf(buildCommand, "xpwntool IPSW/%s %s.dec -k %s -iv %s",name, name, key, keyiv);
+		system(buildCommand);
+
+		printf("%s.dec copied at the folder's root\n", name);
+	}
 
 	return 0;
 }

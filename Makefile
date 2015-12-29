@@ -16,4 +16,7 @@ macos :
 		@$(CC) src/decrypt0r.c src/firmware_tools.c src/firmware_tools.h
 		@ mv a.out decrypt0r
 		@echo 'Succesfully built Decrypt0r for OS X'
-
+clean : 
+		@echo "cleaning..."
+		@rm -rf IPSW firmware.ipsw decrypt0r
+		@echo "cleaned"

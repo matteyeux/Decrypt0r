@@ -24,7 +24,7 @@ int unziper()
 	}
 	else if (strcmp(choice1, "no")== 0 || strcmp(choice1, "2")==0 )
 	{
-		printf("Program won't unzip the IPSW file\n");
+		/*Nothing to do*/
 	}
 	
 	return 0;

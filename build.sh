@@ -8,7 +8,7 @@
 ######################################################################
 # Language :
 #               bash
-# Version : 0.2
+# Version : 0.3
 #
 #  Change Log
 #  ==========
@@ -24,6 +24,8 @@
 #   ---------------------------------------------------------------
 #    29/12/15 | Mathieu Hautebas   | iOS Utilities install 
 #   ---------------------------------------------------------------
+# 	 02/01/16 | Mathieu Hautebas   | add binutils install 
+#   ---------------------------------------------------------------
 
 if [[ "$(whoami)" != "root" ]]; then
     echo "Please run this script as root"
@@ -34,6 +36,7 @@ if [[ $(uname) != 'Linux' ]]; then
   echo "This script is only for Linux"
   exit 1
 fi
+apt-get -y install binutils
 apt-get -y install p7zip-full
 apt-get -y install git
 apt-get -y install build-essential

@@ -33,6 +33,7 @@ int main(int argc, char const *argv[])
 		case 5 : kernelcache(); break;
 		case 6 : patcher(); break;
 		case 7 : save_blobs(); break;
+		case 8 : joker(); break;
 		default : printf("No option available yet\n"); 
 	}
 	return 0;	

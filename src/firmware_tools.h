@@ -11,6 +11,7 @@ int kernelcache();
 int patcher();
 int save_blobs();
 int manifest();
+int joker();
 int fget(char *chain, int sizee);
 int fgetn();
 void nBuffer();

@@ -52,7 +52,6 @@ apt-get -y install libusb-1.0.0-dev
 apt-get -y install libssl-dev
 apt-get -y install libcurl3
 apt-get -y install python-pip
-apt-get -y install gcc
 cd ~
 git clone https://github.com/xerub/xpwn.git
 mkdir ~/build
@@ -91,8 +90,11 @@ git clone https://github.com/Neal/savethemblobs.git
 cp savethemblobs/savethemblobs.py /usr/local/bin/
 echo "Installed Savethemblobs"
 
+apt-get -y install gcc
 cd ~ 
 git clone https://github.com/matteyeux/iOS-Utilities.git
 cd iOS-Utilities
 make
 make install
+
+

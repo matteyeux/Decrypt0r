@@ -1,5 +1,14 @@
 CC = gcc
-	
+OS := $(shell uname)
+
+ifeq ($(OS),Darwin)
+  # Nothing :p
+else ifeq ($(OS),Linux)
+  #Nothing :p
+else
+  $(error Unsupported operating system: $(OS))
+endif
+
 all:
 		@echo 'ERROR: no platform defined.'
 		@echo 'LINUX USERS: make linux'

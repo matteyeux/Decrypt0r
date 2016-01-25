@@ -301,6 +301,51 @@ int save_blobs()
 
 }
 
+int joker()
+{
+    int action;
+    char kernel[1024], buildCommand[1024];
+    system("clear");
+    printf("1) Dump Mach Traps and MIG tables\n");
+    printf("2) Dump al\n");
+    printf("3) Dump kexts\n");
+    printf("4) Kextract\n");
+    printf("5) Dump sysctls\n");
+    printf("6) Dump UNIX syscalls\n");
+    action = fgetn();
+
+    printf("Drag kernel here : ");
+    fget(kernel, 1024);
+    switch (action)
+    {
+        case 1 :
+            sprintf(buildCommand, "joker -m %s", kernel);
+            system(buildCommand); break;
+            break;
+        case 2 :
+            sprintf(buildCommand, "joker -a %s", kernel);
+            system(buildCommand); break;
+            break;
+        case 3 :
+            sprintf(buildCommand, "joker -k %s", kernel);
+            system(buildCommand); break;
+            break;
+	    case 4 :
+            sprintf(buildCommand, "joker -K %s", kernel);
+            system(buildCommand); break;
+            break;
+        case 5 :
+            sprintf(buildCommand, "joker -S %s", kernel);
+            system(buildCommand); break;
+            break;
+    	case 6 :
+            sprintf(buildCommand, "joker -s %s", kernel);
+            system(buildCommand); break;     
+    }
+}
+
+
+
 int manifest()
 {
 	char name[120];

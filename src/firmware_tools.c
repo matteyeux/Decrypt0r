@@ -136,7 +136,7 @@ int Ramdisk()
 	printf("Enter IV key for the Ramdisk : ");
 	fget(keyiv, 80);
 
-	sprintf(buildCommand, "dmg %s %s.dec -k %s -iv %s ", name, name, key, keyiv);
+	sprintf(buildCommand, "xpwntool %s %s.dec -k %s -iv %s ", name, name, key, keyiv);
 	system(buildCommand);
 
 	printf("%s.dec copied at the folder's root\n", name);

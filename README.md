@@ -62,6 +62,8 @@ Some functions by  [Lilo Colson](https://twitter.com/Pwn1d) <br>
 Reimagine tool made by [Danzatt](https://twitter.com/danzatt) <br>
 [Callum Jones](https://twitter.com/icj_) for his awesome website ipsw.me & API .<br>
 [iNeal](https://twitter.com/iNeal) for savethemblobs <br>
+I improved the Makefile for iOS by taking a look at Safestrat fork by [Dayt0n](https://twitter.com/daytonhasty).
+
 Developed by Mathieu Hautebas ([@matteyeux](https://twitter.com/matteyeux)) <br>
 
 For this tool I used: <br>

@@ -17,17 +17,17 @@ all:
 
 linux : 
 		@echo 'Building Decrypt0r for Linux...'
-		@$(CC) src/decrypt0r.c src/firmware_tools.c src/firmware_tools.h -o decrypt0r
+		@$(CC) src/decrypt0r.c src/firmware_tools.c -o decrypt0r
 		@echo 'Succesfully built Decrypt0r for Linux'
 
 macos : 
 		@echo 'Building Decrypt0r for OS X...'
-		@$(CC) src/decrypt0r.c src/firmware_tools.c src/firmware_tools.h -o decrypt0r
+		@$(CC) src/decrypt0r.c src/firmware_tools.c -o decrypt0r
 		@echo 'Succesfully built Decrypt0r for OS X'
 
 iOS : 	
 		@echo 'Building Decrypt0r for iOS...'
-		@xcrun -sdk iphoneos clang --sysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk src/decrypt0r.c src/firmware_tools.c src/firmware_tools.h -arch armv7 -framework IOKit -framework CoreFoundation -Wall -miphoneos-version-min=6.0
+		@xcrun -sdk iphoneos clang --sysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk src/decrypt0r.c src/firmware_tools.c -arch armv7 -framework IOKit -framework CoreFoundation -Wall -miphoneos-version-min=6.0
 		@mv a.out decrypt0r
 		@echo 'Succesfully built Decrypt0r for iOS'
 

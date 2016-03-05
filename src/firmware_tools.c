@@ -2,6 +2,54 @@
 #include <stdio.h>
 #include <string.h>
 
+
+void nBuffer()
+
+{
+   int c;
+   while (c != '\n' && c != EOF)
+   {
+       c = getchar();
+   }
+}
+
+int fget(char *chain, int sizee)
+{
+   char *charn = NULL;
+   if (fgets(chain, sizee, stdin) != NULL)
+   {
+       charn = strchr(chain, '\n');
+       if (charn != NULL)
+       {
+           *charn = '\0';
+       }
+       else
+       {
+           nBuffer();
+       }
+       return(EXIT_SUCCESS);
+   }
+   else
+   {
+       nBuffer();
+       return(EXIT_FAILURE);
+   }
+}
+
+int fgetn()
+{
+	char chain[64];
+	fget(chain, 64);
+	return atoi(chain);
+}
+
+float fgetf()
+{
+	char chain[64];
+	fgetf(chain, 64);
+	return atof(chain);
+}
+
 int unziper()
 {	
 	char choice1[10];
@@ -361,52 +409,4 @@ int manifest()
 	sprintf(buildCommand,"cat IPSW/Firmware/all_flash/all_flash.%sap.production/manifest", boardID);
 	system(buildCommand);
 	return 0;
-}
-
-void nBuffer()
-
-{
-   int c;
-   while (c != '\n' && c != EOF)
-   {
-       c = getchar();
-   }
-}
-
-int fget(char *chain, int sizee)
-
-{
-   char *charn = NULL;
-   if (fgets(chain, sizee, stdin) != NULL)
-   {
-       charn = strchr(chain, '\n');
-       if (charn != NULL)
-       {
-           *charn = '\0';
-       }
-       else
-       {
-           nBuffer();
-       }
-       return(EXIT_SUCCESS);
-   }
-   else
-   {
-       nBuffer();
-       return(EXIT_FAILURE);
-   }
-}
-
-int fgetn()
-{
-	char chain[64];
-	fget(chain, 64);
-	return atoi(chain);
-}
-
-float fgetf()
-{
-	char chain[64];
-	fgetf(chain, 64);
-	return atof(chain);
 }

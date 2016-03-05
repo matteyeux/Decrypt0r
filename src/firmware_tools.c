@@ -1,10 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
+#include <unistd.h>
 
 void nBuffer()
-
 {
    int c;
    while (c != '\n' && c != EOF)

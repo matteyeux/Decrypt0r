@@ -308,6 +308,17 @@ int kernelcache()
 	return 0;
 }
 
+int get_keybags()
+{
+	char file_here[1024], buildCommand[1024];
+	printf("Drag file here : ");
+	fget(file_here, 1024);
+	sprintf(buildCommand, "xpwntool %s nul | cut -f2 -d ' '", file_here);
+	system(buildCommand);
+	remove("nul");
+	return 0;
+}
+
 int patcher()
 {	
 	char decrypt_choice[10], name[30], command[1024], filename[1024];

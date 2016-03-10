@@ -1,2 +1,5 @@
 decrypt0r
 *.o
+*.ipsw
+*.img3
+IPSW

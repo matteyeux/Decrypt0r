@@ -22,6 +22,9 @@ int main(int argc, char const *argv[])
 	printf(" 6) Grab Keybags\n");
 	printf(" 7) Patch iBEC/iBSS\n");
 	printf(" 8) Save SHSHs blobs\n");
+	#ifdef __linux__
+		printf(" 9) Joker\n");
+	#endif
 	printf("Command : ");
 	choice_of_your_life = fgetn();
 
@@ -35,7 +38,9 @@ int main(int argc, char const *argv[])
 		case 6 : get_keybags(); break;
 		case 7 : patcher(); break;
 		case 8 : save_blobs(); break;
-		case 9 : joker(); break;
+		#ifdef __linux__
+		case 9 : joker(); break; //Won't print it if it's not a Linux distro :)	
+		#endif
 		default : printf("No option available yet\n"); 
 	}
 	return 0;	

@@ -36,6 +36,13 @@ if [[ $(uname) != 'Linux' ]]; then
   echo "This script is only for Linux"
   exit 1
 fi
+
+if [[ $(uname -m) == x86_64 ]]; then
+	wget https://www.dropbox.com/s/b6m5bkaqym2gaqh/joker?dl=0
+	cp joker /usr/local/bin/ 
+	chmod +x /usr/local/bin/joker
+fi
+
 apt-get -y install binutils
 apt-get -y install p7zip-full
 apt-get -y install git
@@ -61,6 +68,7 @@ make
 make package
 tar xvjf XPwn-0.5.8-Linux.tar.bz2
 
+wget 
 cd XPwn-0.5.8-Linux
 cp dmg hdutil hfsplus ipsw ticket xpwntool validate /usr/local/bin/
 

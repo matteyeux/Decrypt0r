@@ -1,6 +1,7 @@
 /*
 firmware_tools.h
 */
+void swag_logo();
 int unziper();
 int ipswDownloader(); 
 int rootfs();

@@ -13,6 +13,7 @@ int main(int argc, char const *argv[])
 	system("clear");
 	ipswDownloader();
 	system("clear");
+	swag_logo();
 	printf("Choose what you want to do\n");
 	printf(" 1) Decrypt Root Filesystem\n");
 	printf(" 2) Decrypt Ramdisk\n");

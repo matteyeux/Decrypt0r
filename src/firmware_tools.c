@@ -3,6 +3,17 @@
 #include <string.h>
 #include <unistd.h>
 
+void swag_logo()
+{
+	system("clear");
+    printf(" ____                             _    ___\n");
+    printf("|  _ \\  ___  ___ _ __ _   _ _ __ | |_ / _ \\ _ __\n");
+    printf("| | | |/ _ \\/ __| '__| | | | '_ \\| __| | | | '__|\n");
+    printf("| |_| |  __/ (__| |  | |_| | |_) | |_| |_| | |\n");
+    printf("|____/ \\___|\\___|_|   \\__, | .__/ \\__|\\___/|_|\n");
+    printf("                      |___/|_|\n\n");
+}
+
 void nBuffer()
 {
    int c;
@@ -54,7 +65,7 @@ int unziper()
 	char choice1[10];
 	char firmware[80];
 	char buildCommand[120];
-
+	swag_logo();
 	printf("\n\nDecompress firmware ?\n");
 	printf("1) YES\n");
 	printf("2) NO\n");
@@ -83,7 +94,7 @@ int ipswDownloader()
 	char choice1[10];
 	char version[7];
 	char link[1024];
-
+	swag_logo();
 	printf("Download firmware ?\n");
 	printf("1) YES\n");
 	printf("2) NO\n");
@@ -121,8 +132,9 @@ int rootfs()						/*repack*/
 	char keyiv[80];
 	char decrypt[256];
 	
+
 	unziper();
-	system("clear");
+	swag_logo();
 	
 	printf("Entrer rootfs name : ");
 	fget(rootfs, 80);
@@ -171,8 +183,7 @@ int Ramdisk()
 	char keyiv[80];
 	
 	unziper();
-	system("clear");
-
+	swag_logo();
 	chdir("IPSW");
 	printf("Enter the Ramdisk name : ");
 	fget(name, 120);
@@ -201,7 +212,7 @@ int IMG3()
 	char command[80];
 	char img3_dir[1024];
 	unziper();
-	system("clear");
+	swag_logo();
 
 	printf("Board ID (e.g n49ap for iPhone5,4) : ");
 	fget(boardID, 10);
@@ -236,7 +247,7 @@ int DFU_file()
 	char dfu_dir[80];
 	char test[1024];
 	unziper();
-	system("clear");
+	swag_logo();
 
 	printf("Enter the DFU filename : ");
 	fget(dfu_name, 30);
@@ -268,7 +279,7 @@ int kernelcache()
 	char machO[5];
 
 	unziper();
-
+	swag_logo();
 	printf("Extract kernel into MachO file ?\n1) YES\n2) NO\n");
 	fget(machO, 5);
 	
@@ -311,6 +322,7 @@ int kernelcache()
 int get_keybags()
 {
 	char file_here[1024], buildCommand[1024];
+	swag_logo();
 	printf("Drag file here : ");
 	fget(file_here, 1024);
 	sprintf(buildCommand, "xpwntool %s nul | cut -f2 -d ' '", file_here);
@@ -322,6 +334,7 @@ int get_keybags()
 int patcher()
 {	
 	char decrypt_choice[10], name[30], command[1024], filename[1024];
+	swag_logo();
 	printf("Before patching iBEC or iBSS you need to decrypt it\nDo you want to decrypt a file?\n1) YES\n2) NO\n");
 	fget(decrypt_choice,10);
 	if (strcmp(decrypt_choice, "1")==0 || strcmp(decrypt_choice, "YES")==0 || strcmp(decrypt_choice, "yes")==0)
@@ -349,6 +362,7 @@ int patcher()
 int save_blobs()
 {	
 	char ecid[15], model[10], command[256];
+	swag_logo();
 	printf("ECID : ");
 	fget(ecid, 15);
 	printf("model (e.g iPhone5,4 for iPhone 5C) : ");
@@ -363,7 +377,7 @@ int joker()
 {
     int action;
     char kernel[1024], buildCommand[1024];
-    system("clear");
+    swag_logo();
     printf("1) Dump Mach Traps and MIG tables\n");
     printf("2) Dump al\n");
     printf("3) Dump kexts\n");
@@ -413,7 +427,7 @@ int manifest()
 	char boardID[10];
 
 	unziper();
-
+	swag_logo();
 	printf("Board ID (e.g n49 for iPhone5,4) : ");
 	fget(boardID, 10);
 	sprintf(buildCommand,"cat IPSW/Firmware/all_flash/all_flash.%sap.production/manifest", boardID);

@@ -38,8 +38,8 @@ if [[ $(uname) != 'Linux' ]]; then
 fi
 
 if [[ $(uname -m) == x86_64 ]]; then
-	wget https://www.dropbox.com/s/b6m5bkaqym2gaqh/joker?dl=0
-	cp joker /usr/local/bin/ 
+	wget https://www.dropbox.com/s/b6m5bkaqym2gaqh/joker?dl=0 -O joker
+	mv joker /usr/local/bin/ 
 	chmod +x /usr/local/bin/joker
 fi
 

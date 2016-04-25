@@ -230,7 +230,7 @@ int IMG3()
 	printf("Enter the key IV for %s: ", name);
 	fget(keyiv, 80);
 
-	sprintf(buildCommand,"xpwntool target %s.dec -k %s -iv %s", name, key, keyiv);
+	sprintf(buildCommand,"xpwntool target %s.dec -k %s -iv %s -decrypt", name, key, keyiv);
 	system(buildCommand);
 	rename("target", name);
 	printf("%s.dec created in %s\n", name,img3_dir);
@@ -262,7 +262,7 @@ int DFU_file()
 	printf("Enter the key IV for %s: ", dfu_name);
 	fget(keyiv, 80);
 
-	sprintf(buildCommand, "xpwntool target %s.dec -k %s -iv %s", dfu_name, key, keyiv);
+	sprintf(buildCommand, "xpwntool target %s.dec -k %s -iv %s -decrypt", dfu_name, key, keyiv);
 	system(buildCommand);
 	rename("target", dfu_name);
 	printf("%s.dec created in %s\n",dfu_name, dfu_dir);
@@ -310,7 +310,7 @@ int kernelcache()
 		printf("Enter the key IV for %s: ", name);
 		fget(keyiv, 80);
 
-		sprintf(buildCommand, "xpwntool IPSW/%s %s.dec -k %s -iv %s",name, name, key, keyiv);
+		sprintf(buildCommand, "xpwntool IPSW/%s %s.dec -k %s -iv %s -decrypt",name, name, key, keyiv);
 		system(buildCommand);
 
 		printf("%s.dec copied at the folder's root\n", name);

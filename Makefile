@@ -4,8 +4,8 @@ TARGET = decrypt0r
 
 all : $(TARGET)
 
-decrypt0r : src/decrypt0r.o src/firmware_tools.o
-		$(CC) -o decrypt0r src/decrypt0r.o src/firmware_tools.o
+$(TARGET) : src/decrypt0r.o src/firmware_tools.o
+		$(CC) -o $(TARGET) src/decrypt0r.o src/firmware_tools.o
 		@echo "Successfully built $(TARGET) for $(uname_s)"
 
 decrypt0r.o : src/decrypt0r.c

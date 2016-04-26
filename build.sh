@@ -22,9 +22,9 @@
 #   ---------------------------------------------------------------
 #    11/12/15 | Mathieu Hautebas   | Added savethemblobs
 #   ---------------------------------------------------------------
-#    29/12/15 | Mathieu Hautebas   | iOS Utilities install 
+#    29/12/15 | Mathieu Hautebas   | iOS Utilities install
 #   ---------------------------------------------------------------
-# 	 02/01/16 | Mathieu Hautebas   | add binutils install 
+# 	 02/01/16 | Mathieu Hautebas   | add binutils install
 #   ---------------------------------------------------------------
 
 if [[ "$(whoami)" != "root" ]]; then
@@ -39,7 +39,7 @@ fi
 
 if [[ $(uname -m) == x86_64 ]]; then
 	wget https://www.dropbox.com/s/b6m5bkaqym2gaqh/joker?dl=0 -O joker
-	mv joker /usr/local/bin/ 
+	mv joker /usr/local/bin/
 	chmod +x /usr/local/bin/joker
 fi
 
@@ -62,13 +62,13 @@ apt-get -y install python-pip
 cd ~
 git clone https://github.com/xerub/xpwn.git
 mkdir ~/build
-cd ~/build 
+cd ~/build
 cmake ~/xpwn
 make
 make package
 tar xvjf XPwn-0.5.8-Linux.tar.bz2
 
-wget 
+wget
 cd XPwn-0.5.8-Linux
 cp dmg hdutil hfsplus ipsw ticket xpwntool validate /usr/local/bin/
 
@@ -80,7 +80,7 @@ echo "Now installing reimagine..."
 apt-get -y install libssl-dev:i386 #Should work for reimagine
 apt-get -y install clang
 
-cd ~ 
+cd ~
 git clone https://github.com/danzatt/reimagine.git #
 cd reimagine
 rm -rf opensn0w-X
@@ -99,10 +99,8 @@ cp savethemblobs/savethemblobs.py /usr/local/bin/
 echo "Installed Savethemblobs"
 
 apt-get -y install gcc
-cd ~ 
+cd ~
 git clone https://github.com/matteyeux/iOS-Utilities.git
 cd iOS-Utilities
 make
 make install
-
-

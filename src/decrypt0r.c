@@ -26,7 +26,7 @@ int main(int argc, char const *argv[])
 	#ifdef __linux__
 		printf(" 9) Joker\n");
 	#endif
-	printf("Command : ");
+	printf("> ");
 	choice_of_your_life = fgetn();
 
 	switch (choice_of_your_life)

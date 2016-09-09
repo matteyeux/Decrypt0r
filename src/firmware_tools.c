@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-
+#include <fcntl.h>
+#include <errno.h>
 void swag_logo()
 {
 	system("clear");
@@ -58,6 +59,35 @@ float fgetf()
 	char chain[64];
 	fgetf(chain, 64);
 	return atof(chain);
+}
+
+int check4im4p (char *name)
+{
+    char begin_file[12];
+    char filetype[5];
+    int nb;
+    int fd=0;
+    memset(begin_file, 0, 12);
+    memset(filetype, 0, 5);
+    fd = open(name, O_RDONLY);
+    if (fd == -1)
+    {
+        printf("Could not open %s : %s\n", name, strerror(errno));
+        exit(1);
+    }
+    nb = read(fd, begin_file, 11);
+    strncpy(filetype, begin_file+7, 4);
+    if(strcmp(filetype, "IM4P")==0)
+    {
+        printf("This tool doesn't support IM4P files yet\n");
+        exit(1);
+    }
+
+    else {
+    	printf("bruh\n");
+    }
+    close(fd);
+    return 0;
 }
 
 int unziper()
@@ -217,11 +247,12 @@ int IMG3()
 	printf("Board ID (e.g n49ap for iPhone5,4) : ");
 	fget(boardID, 10);
 	
-	printf("Enter the IMG3 filename : ");
+	printf("IMG3 filename : ");
 	fget(name, 120);
 	
 	sprintf(img3_dir,"IPSW/Firmware/all_flash/all_flash.%s.production", boardID);
 	chdir(img3_dir);
+	check4im4p(name);
 	rename(name, "target");
 
 	printf("Enter the key for %s: ", name);

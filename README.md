@@ -41,7 +41,7 @@ Then follow instructions.<br>
 
 ###How to build it?
 
-To build Decrypt0r just cd to the decryptr0r directory and run `make + your_os` <br> 
+To build Decrypt0r just cd to the decryptr0r directory and run `make` <br> 
 
 If you need to build XPwn for Linux, just run `build.sh`.
 OS X users you have to build XPwn yourself, I'll made a bin directory with all the binaries ASAP

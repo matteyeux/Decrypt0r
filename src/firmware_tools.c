@@ -61,14 +61,15 @@ float fgetf()
 	return atof(chain);
 }
 
+int im4p = 0;
+
 int check4im4p (char *name)
 {
-    char begin_file[12];
-    char filetype[5];
-    int nb;
-    int fd=0;
+    char begin_file[12], filetype[5];
+    int fd=0, nb;
     memset(begin_file, 0, 12);
     memset(filetype, 0, 5);
+
     fd = open(name, O_RDONLY);
     if (fd == -1)
     {
@@ -77,15 +78,26 @@ int check4im4p (char *name)
     }
     nb = read(fd, begin_file, 11);
     strncpy(filetype, begin_file+7, 4);
+    printf("%s\n",filetype);
+    
     if(strcmp(filetype, "IM4P")==0)
     {
-        printf("This tool doesn't support IM4P files yet\n");
-        exit(1);
+        im4p = 1;
     }
 
     else {
-    	printf("bruh\n");
+    	strncpy(filetype, begin_file+0, 4);
+    	if (strcmp(filetype, "3gmI")==0) 
+    	{
+    		im4p = 0;
+    		printf("%s\n",filetype);
+    	}
+    	else {
+    		printf("%s is not an IM4P nor an IMG3 file\n", name);
+    		exit(1);
+    	}
     }
+
     close(fd);
     return 0;
 }
@@ -252,7 +264,9 @@ int IMG3()
 	
 	sprintf(img3_dir,"IPSW/Firmware/all_flash/all_flash.%s.production", boardID);
 	chdir(img3_dir);
+	system("ls");
 	check4im4p(name);
+	printf("%d\n",im4p);
 	rename(name, "target");
 
 	printf("Enter the key for %s: ", name);
@@ -261,7 +275,22 @@ int IMG3()
 	printf("Enter the key IV for %s: ", name);
 	fget(keyiv, 80);
 
-	sprintf(buildCommand,"xpwntool target %s.dec -k %s -iv %s -decrypt", name, key, keyiv);
+	if (im4p == 0)
+	{
+		sprintf(buildCommand,"xpwntool target %s.dec -k %s -iv %s -decrypt", name, key, keyiv);
+	}
+	
+	else if (im4p == 1)
+	{
+		sprintf(buildCommand, "dd if=target bs=52 skip=1 | openssl aes-256-cbc -K %s -iv %s -nopad -d > %s.dec", keyiv, key, name);
+	}
+
+	else {
+		printf("wat?\n");
+	}
+
+	printf("%s\n", buildCommand);
+	getchar();
 	system(buildCommand);
 	rename("target", name);
 	printf("%s.dec created in %s\n", name,img3_dir);
@@ -271,12 +300,8 @@ int IMG3()
 
 int DFU_file()
 {
-	char dfu_name[120];
-	char buildCommand[1024];
-	char key[80];
-	char keyiv[80];
-	char dfu_dir[80];
-	char test[1024];
+	char dfu_name[120], buildCommand[1024], key[80], keyiv[80], dfu_dir[80];
+
 	unziper();
 	swag_logo();
 
@@ -285,6 +310,7 @@ int DFU_file()
 	
 	sprintf(dfu_dir, "IPSW/Firmware/dfu/");
 	chdir(dfu_dir);
+	check4im4p(dfu_name);
 	rename(dfu_name, "target");
 
 	printf("Enter the key for %s: ", dfu_name);
@@ -293,7 +319,15 @@ int DFU_file()
 	printf("Enter the key IV for %s: ", dfu_name);
 	fget(keyiv, 80);
 
-	sprintf(buildCommand, "xpwntool target %s.dec -k %s -iv %s -decrypt", dfu_name, key, keyiv);
+	if (im4p == 0)
+	{
+		sprintf(buildCommand,"xpwntool target %s.dec -k %s -iv %s -decrypt", dfu_name, key, keyiv);
+	}
+	
+	else if (im4p == 1)
+	{
+		sprintf(buildCommand, "dd if=target bs=52 skip=1 | openssl aes-256-cbc -K %s -iv %s -nopad -d > %s.dec", keyiv, key, dfu_name);
+	}
 	system(buildCommand);
 	rename("target", dfu_name);
 	printf("%s.dec created in %s\n",dfu_name, dfu_dir);
@@ -302,50 +336,37 @@ int DFU_file()
 
 int kernelcache()
 {	
-
-	char name[120];
-	char buildCommand[1024];
-	char key[80];
-	char keyiv[80];
-	char machO[5];
+	char name[120], buildCommand[1024], key[80], keyiv[80];
 
 	unziper();
 	swag_logo();
-	printf("Extract kernel into MachO file ?\n1) YES\n2) NO\n");
-	fget(machO, 5);
-	
-	if (strcmp(machO, "yes")==0 || strcmp(machO, "YES")==0 || strcmp(machO, "1")==0)
+	printf("Enter the kernel filename : ");
+	fget(name, 120);
+	system("ls");
+	chdir("IPSW");
+	system("ls");
+	check4im4p(name);
+	rename(name, "target");
+	system("ls");
+	printf("Enter the key for %s: ", name);
+	fget(key, 80);
+
+
+	printf("Enter the key IV for %s: ", name);
+	fget(keyiv, 80);
+	printf("%d\n", im4p);
+	if (im4p == 0)
 	{
-		printf("Enter the kernel filename : ");
-		fget(name, 120);
-
-		printf("Enter the key for %s: ", name);
-		fget(key, 80);
-
-
-		printf("Enter the key IV for %s: ", name);
-		fget(keyiv, 80);
-
-		sprintf(buildCommand, "reimagine IPSW/%s kernel.macho -iv %s -k %s -x -r", name, keyiv, key);
-		system(buildCommand);
+		sprintf(buildCommand,"xpwntool target %s.dec -k %s -iv %s -decrypt", name, key, keyiv);
 	}
-	else if (strcmp(machO, "no")==0 || strcmp(machO, "NO")==0 || strcmp(machO, "2")==0)
+		
+	else if (im4p == 1)
 	{
-		printf("Enter the kernel filename : ");
-		fget(name, 120);
-
-		printf("Enter the key for %s: ", name);
-		fget(key, 80);
-
-
-		printf("Enter the key IV for %s: ", name);
-		fget(keyiv, 80);
-
-		sprintf(buildCommand, "xpwntool IPSW/%s %s.dec -k %s -iv %s -decrypt",name, name, key, keyiv);
-		system(buildCommand);
-
-		printf("%s.dec copied at the folder's root\n", name);
+		sprintf(buildCommand, "dd if=target bs=52 skip=1 | openssl aes-256-cbc -K %s -iv %s -nopad -d > %s.dec", keyiv, key, name);
 	}
+	system(buildCommand);
+	rename("target", name);
+	printf("%s.dec copied at the folder's root\n", name);
 
 	return 0;
 }
@@ -401,67 +422,4 @@ int save_blobs()
 	sprintf(command, "savethemblobs.py --no-submit-cydia --skip-cydia --skip-ifaith 0x%s %s", ecid, model);
 	system(command);
 	printf("Blobs saved to ~/.shsh\n");
-
-}
-
-int joker()
-{
-    int action;
-    char kernel[1024], buildCommand[1024];
-    swag_logo();
-    printf("1) Dump Mach Traps and MIG tables\n");
-    printf("2) Dump al\n");
-    printf("3) Dump kexts\n");
-    printf("4) Kextract\n");
-    printf("5) Dump sysctls\n");
-    printf("6) Dump UNIX syscalls\n");
-    action = fgetn();
-
-    printf("Drag kernel here : ");
-    fget(kernel, 1024);
-    switch (action)
-    {
-        case 1 :
-            sprintf(buildCommand, "joker -m %s", kernel);
-            system(buildCommand); break;
-            break;
-        case 2 :
-            sprintf(buildCommand, "joker -a %s", kernel);
-            system(buildCommand); break;
-            break;
-        case 3 :
-            sprintf(buildCommand, "joker -k %s", kernel);
-            system(buildCommand); break;
-            break;
-	    case 4 :
-            sprintf(buildCommand, "joker -K %s", kernel);
-            system(buildCommand); break;
-            break;
-        case 5 :
-            sprintf(buildCommand, "joker -S %s", kernel);
-            system(buildCommand); break;
-            break;
-    	case 6 :
-            sprintf(buildCommand, "joker -s %s", kernel);
-            system(buildCommand); break;     
-    }
-}
-
-
-
-int manifest()
-{
-	char name[120];
-	char buildCommand[1024];
-	char key[80];
-	char keyiv[80];
-	char boardID[10];
-
-	unziper();
-	swag_logo();
-	printf("Board ID (e.g n49 for iPhone5,4) : ");
-	fget(boardID, 10);
-	sprintf(buildCommand,"cat IPSW/Firmware/all_flash/all_flash.%sap.production/manifest", boardID);
-	system(buildCommand);
-	return 0;
 }

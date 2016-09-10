@@ -70,7 +70,7 @@ tar xvjf XPwn-0.5.8-Linux.tar.bz2
 
 wget
 cd XPwn-0.5.8-Linux
-cp dmg hdutil hfsplus ipsw ticket xpwntool validate /usr/local/bin/
+cp dmg hdutil hfsplus ipsw ticket xpwntool validate /usr/local/bin/ # Maybe I can replace this shit with one line : sudo make install 
 
 echo "XPwn binaries installed !"
 
@@ -99,7 +99,7 @@ cp savethemblobs/savethemblobs.py /usr/local/bin/
 echo "Installed Savethemblobs"
 
 apt-get -y install gcc
-cd ~
+cd ~ # I don't know yet why I install it
 git clone https://github.com/matteyeux/iOS-Utilities.git
 cd iOS-Utilities
 make

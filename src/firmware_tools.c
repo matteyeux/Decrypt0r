@@ -4,6 +4,9 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
+
+#define VERSION "1.1.2"
+
 void swag_logo()
 {
 	system("clear");
@@ -12,7 +15,7 @@ void swag_logo()
     printf("| | | |/ _ \\/ __| '__| | | | '_ \\| __| | | | '__|\n");
     printf("| |_| |  __/ (__| |  | |_| | |_) | |_| |_| | |\n");
     printf("|____/ \\___|\\___|_|   \\__, | .__/ \\__|\\___/|_|\n");
-    printf("                      |___/|_|\n\n");
+    printf(" Version %s        |___/|_| by matteyeux\n\n", VERSION);
 }
 
 void nBuffer()
@@ -45,6 +48,13 @@ int fget(char *chain, int sizee)
        nBuffer();
        return(EXIT_FAILURE);
    }
+}
+
+void isfilehere(char *name){
+	if (fopen(name,"r")==NULL){
+		printf("File %s is missing\n", name);
+		exit(1);
+	}
 }
 
 int fgetn()
@@ -117,7 +127,7 @@ int unziper()
 	{
 		printf("Firmware to decompress : ");
 		fget(firmware, 80);
-
+		isfilehere(firmware);
 		printf("Extracting firmware in the IPSW folder...\n");
 		sprintf(buildCommand, "7z x -oIPSW %s", firmware); 
 		system(buildCommand);
@@ -229,6 +239,7 @@ int Ramdisk()
 	chdir("IPSW");
 	printf("Enter the Ramdisk name : ");
 	fget(name, 120);
+	isfilehere(name);
 
 	printf("Enter key for the Ramdisk : ");
 	fget(key, 80);
@@ -264,16 +275,16 @@ int IMG3()
 	
 	sprintf(img3_dir,"IPSW/Firmware/all_flash/all_flash.%s.production", boardID);
 	chdir(img3_dir);
-	system("ls");
+	isfilehere(name);
 	check4im4p(name);
-	printf("%d\n",im4p);
-	rename(name, "target");
+
 
 	printf("Enter the key for %s: ", name);
 	fget(key, 80);
 	
 	printf("Enter the key IV for %s: ", name);
 	fget(keyiv, 80);
+	rename(name, "target");
 
 	if (im4p == 0)
 	{
@@ -310,8 +321,8 @@ int DFU_file()
 	
 	sprintf(dfu_dir, "IPSW/Firmware/dfu/");
 	chdir(dfu_dir);
+	isfilehere(dfu_name);
 	check4im4p(dfu_name);
-	rename(dfu_name, "target");
 
 	printf("Enter the key for %s: ", dfu_name);
 	fget(key, 80);
@@ -319,6 +330,7 @@ int DFU_file()
 	printf("Enter the key IV for %s: ", dfu_name);
 	fget(keyiv, 80);
 
+	rename(dfu_name, "target");
 	if (im4p == 0)
 	{
 		sprintf(buildCommand,"xpwntool target %s.dec -k %s -iv %s -decrypt", dfu_name, key, keyiv);
@@ -342,19 +354,17 @@ int kernelcache()
 	swag_logo();
 	printf("Enter the kernel filename : ");
 	fget(name, 120);
-	system("ls");
 	chdir("IPSW");
-	system("ls");
+	isfilehere(name);
 	check4im4p(name);
-	rename(name, "target");
-	system("ls");
 	printf("Enter the key for %s: ", name);
 	fget(key, 80);
 
 
 	printf("Enter the key IV for %s: ", name);
 	fget(keyiv, 80);
-	printf("%d\n", im4p);
+	rename(name, "target");
+	
 	if (im4p == 0)
 	{
 		sprintf(buildCommand,"xpwntool target %s.dec -k %s -iv %s -decrypt", name, key, keyiv);

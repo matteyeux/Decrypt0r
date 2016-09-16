@@ -2,5 +2,6 @@ decrypt0r
 *.o
 *.ipsw
 *.img3
+*.im4p
 *.dec
 IPSW

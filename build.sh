@@ -37,12 +37,6 @@ if [[ $(uname) != 'Linux' ]]; then
   exit 1
 fi
 
-if [[ $(uname -m) == x86_64 ]]; then
-	wget https://www.dropbox.com/s/b6m5bkaqym2gaqh/joker?dl=0 -O joker
-	mv joker /usr/local/bin/
-	chmod +x /usr/local/bin/joker
-fi
-
 apt-get -y install binutils
 apt-get -y install p7zip-full
 apt-get -y install git
@@ -64,22 +58,16 @@ git clone https://github.com/xerub/xpwn.git
 mkdir ~/build
 cd ~/build
 cmake ~/xpwn
-make
-make package
-tar xvjf XPwn-0.5.8-Linux.tar.bz2
-
-wget
-cd XPwn-0.5.8-Linux
-cp dmg hdutil hfsplus ipsw ticket xpwntool validate /usr/local/bin/ # Maybe I can replace this shit with one line : sudo make install 
+make install
 
 echo "XPwn binaries installed !"
-
 
 echo "Now installing reimagine..."
 
 apt-get -y install libssl-dev:i386 #Should work for reimagine
 apt-get -y install clang
 
+# Reimagine
 cd ~
 git clone https://github.com/danzatt/reimagine.git #
 cd reimagine
@@ -88,19 +76,13 @@ git clone https://github.com/danzatt/opensn0w-X.git
 cd ~
 cd reimagine/opensn0w-X/src && make all
 cd ../.. && make
-
 cp ~/reimagine/reimagine /usr/local/bin/
-
 echo "Installed reimagine !"
-echo "Downloading Savethemblobs..."
-cd ~
-git clone https://github.com/Neal/savethemblobs.git
-cp savethemblobs/savethemblobs.py /usr/local/bin/
-echo "Installed Savethemblobs"
 
 apt-get -y install gcc
-cd ~ # I don't know yet why I install it
-git clone https://github.com/matteyeux/iOS-Utilities.git
-cd iOS-Utilities
-make
-make install
+
+git clone --recursive https://github.com/xerub/img4tool 
+cd img4tool/lzfse 
+make && make install 
+cd ../
+make && cp img4 /usr/local/bin/

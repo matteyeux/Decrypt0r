@@ -7,7 +7,7 @@ int unziper();
 int ipswDownloader(); 
 int rootfs();
 int Ramdisk();
-int IMG3();
+int IMGfile();
 int DFU_file();
 int kernelcache();
 int patcher();

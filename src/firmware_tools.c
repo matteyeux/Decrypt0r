@@ -255,7 +255,7 @@ int Ramdisk()
 	return 0;
 }
 
-int IMG3()
+int IMGfile()
 {	
 	char name[120];
 	char buildCommand[1024];
@@ -293,7 +293,7 @@ int IMG3()
 	
 	else if (im4p == 1)
 	{
-		sprintf(buildCommand, "dd if=target bs=52 skip=1 | openssl aes-256-cbc -K %s -iv %s -nopad -d > %s.dec", keyiv, key, name);
+		sprintf(buildCommand, "img4 -extra target %s.dec %s%s", name, keyiv, key);
 	}
 
 	else {
@@ -338,7 +338,7 @@ int DFU_file()
 	
 	else if (im4p == 1)
 	{
-		sprintf(buildCommand, "dd if=target bs=52 skip=1 | openssl aes-256-cbc -K %s -iv %s -nopad -d > %s.dec", keyiv, key, dfu_name);
+		sprintf(buildCommand, "img4 -extra target %s.dec %s%s", dfu_name, keyiv, key);
 	}
 	system(buildCommand);
 	rename("target", dfu_name);
@@ -363,6 +363,7 @@ int kernelcache()
 
 	printf("Enter the key IV for %s: ", name);
 	fget(keyiv, 80);
+
 	rename(name, "target");
 	
 	if (im4p == 0)
@@ -372,7 +373,14 @@ int kernelcache()
 		
 	else if (im4p == 1)
 	{
-		sprintf(buildCommand, "dd if=target bs=52 skip=1 | openssl aes-256-cbc -K %s -iv %s -nopad -d > %s.dec", keyiv, key, name);
+		if (strcmp(keyiv, "")==0 && strcmp(keyiv, "")==0)
+		{
+			sprintf(buildCommand, "img4 -image target %s.dec", name);
+		} 
+		else {
+			sprintf(buildCommand, "img4 -extra target %s.dec %s%s", name, keyiv, key);
+		}
+
 	}
 	system(buildCommand);
 	rename("target", name);
@@ -421,15 +429,15 @@ int patcher()
 	return 0;
 }
 
-int save_blobs()
-{	
-	char ecid[15], model[10], command[256];
-	swag_logo();
-	printf("ECID : ");
-	fget(ecid, 15);
-	printf("model (e.g iPhone5,4 for iPhone 5C) : ");
-	fget(model, 10);
-	sprintf(command, "savethemblobs.py --no-submit-cydia --skip-cydia --skip-ifaith 0x%s %s", ecid, model);
-	system(command);
-	printf("Blobs saved to ~/.shsh\n");
-}
+// int save_blobs()
+// {	
+// 	char ecid[15], model[10], command[256];
+// 	swag_logo();
+// 	printf("ECID : ");
+// 	fget(ecid, 15);
+// 	printf("model (e.g iPhone5,4 for iPhone 5C) : ");
+// 	fget(model, 10);
+// 	sprintf(command, "savethemblobs.py --no-submit-cydia --skip-cydia --skip-ifaith 0x%s %s", ecid, model);
+// 	system(command);
+// 	printf("Blobs saved to ~/.shsh\n");
+// }

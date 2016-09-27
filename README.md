@@ -4,12 +4,12 @@
 Choose what you want to do
  1) Decrypt Root Filesystem
  2) Decrypt Ramdisk
- 3) Decrypt IMG3 File
+ 3) Decrypt IMG3/IMG4 File
  4) Decrypt DFU File
  5) Decrypt Kernelcache
- 6) Patch iBEC/iBSS
- 7) Save SHSHs blobs
-Command :
+ 6) Grab Keybags
+ 7) Patch iBEC/iBSS
+> 
 ```
 
 ###Rootfs decrypting
@@ -39,6 +39,12 @@ To decrypt IMG3 files like kernelcache or iBoot, you have to grab the keys from 
 The first one to add is the largest, and the second one is the iv key (the smallest).<br>
 Then follow instructions.<br>
 
+### IMG4 
+
+Decrypt0r now supports IMG4 (or im4P, whatever) files. I added a function which checks if the file is an IM4P or not.
+
+You can also decompress compressed iPhone 7 (and other unencrypted kcaches) kernelcache when it asks for firmware just  press enter keys.
+
 ###How to build it?
 
 To build Decrypt0r just cd to the decryptr0r directory and run `make` <br> 
@@ -56,13 +62,11 @@ Download [here](https://www.dropbox.com/s/r6e5fwae2ff7ecv/XPwn%20binaries.zip?dl
 If you want to download an IPSW file from the tool you should install [wget](http://rudix.org/packages/wget.html)
 ## Credits
 
-Thank you to : 
-My friend [@Dev__Jam](https://twitter.com/Dev__Jam) for a part of a batch file code. <br>
+Credits go to :  
+My friend [@Dev__Jam](https://twitter.com/Dev__Jam) for idea and some code. <br>
 Some functions by  [Lilo Colson](https://twitter.com/Pwn1d) <br>
 Reimagine tool made by [Danzatt](https://twitter.com/danzatt) <br>
 [Callum Jones](https://twitter.com/icj_) for his awesome website ipsw.me & API .<br>
-[iNeal](https://twitter.com/iNeal) for savethemblobs <br>
-I improved the Makefile for iOS by taking a look at Safestrat fork by [Dayt0n](https://twitter.com/daytonhasty).
 
 Developed by Mathieu Hautebas ([@matteyeux](https://twitter.com/matteyeux)) <br>
 
@@ -71,6 +75,6 @@ For this tool I used: <br>
 - XPwn compiled from https://github.com/xerub/xpwn <br>
 - 7zip (developed by Igor Pavlov) <br>
 - Reimagine
-- Savethemblobs
+- [img4tool](https://github.com/xerub/img4tool)
 
 For more informations contact me on Twitter: [@matteyeux](https://twitter.com/matteyeux) or ask this [awesome website](http://www.google.com) (not mine). <br>

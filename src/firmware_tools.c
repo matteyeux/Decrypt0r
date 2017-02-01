@@ -5,6 +5,7 @@
 #include <fcntl.h>
 #include <errno.h>
 
+#include "partial.h"
 #define VERSION "1.1.2"
 
 void swag_logo()
@@ -52,7 +53,7 @@ int fget(char *chain, int sizee)
 
 void isfilehere(char *name){
 	if (fopen(name,"r")==NULL){
-		printf("File %s is missing\n", name);
+		printf("[ERROR] %s : %s\n",name, strerror(errno));
 		exit(1);
 	}
 }
@@ -144,15 +145,18 @@ int ipswDownloader()
 {
 	char model[10];
 	char choice1[10];
-	char version[7];
+	char version[10];
 	char link[1024];
+
 	swag_logo();
-	printf("Download firmware ?\n");
-	printf("1) YES\n");
-	printf("2) NO\n");
+	printf("Choose something\n");
+	printf("1) Download entire firmware\n");
+	//printf("2) Download a firmware component\n");
+	printf("2) Nothing\n");
+	printf("> ");
 	fget(choice1, 10);
-	if (strcmp(choice1, "yes")==0 || strcmp(choice1, "1")==0)
-	{
+	if (strcmp(choice1, "firmware")==0 || strcmp(choice1, "1")==0)
+	{	
 		printf("Model : ");
 		fget(model, 10);
 		printf("Version : ");
@@ -166,9 +170,23 @@ int ipswDownloader()
 		system(link);
 		system("7z x -oIPSW firmware.ipsw");
 	}
-	else if(strcmp(choice1, "no")==0 || strcmp(choice1, "2")==0)
-	{
-		printf("\n");
+	// else if(strcmp(choice1, "component")==0 || strcmp(choice1, "2")==0)
+	// {
+	// 	char* firmwareurl; // "http://api.ipsw.me/v2/" + model +  "/" + version + "/dl";
+	// 	char* path[128], pfilename[15];
+	// 	printf("Model : ");
+	// 	fget(model, 10);
+	// 	printf("Version : ");
+	// 	fget(version, 10);
+	// 	printf("Exact path to file : ");
+	// 	fget(path, 128);
+	// 	printf("Filename : ");
+	// 	fget(pfilename, 15);
+	// 	sprintf(firmwareurl,"http://api.ipsw.me/v2/%s/%s/url/dl",model,version);
+	// 	partial_download(firmwareurl, path, "pfilename");
+	// }
+	else {
+		printf("\n"); //Next
 	}
 	return 0;
 }

@@ -1,21 +1,23 @@
 CC = gcc
 uname_s = $(shell uname -s)
 TARGET = decrypt0r
+LDFLAGS = -lcurl -lz
+OBJECTS = src/decrypt0r.o \
+		  src/firmware_tools.o \
+		  src/partial.o \
+		  src/partialzip.o
 
 all : $(TARGET)
 
-$(TARGET) : src/decrypt0r.o src/firmware_tools.o
-		$(CC) -o $(TARGET) src/decrypt0r.o src/firmware_tools.o
+$(TARGET) : $(OBJECTS)
+		$(CC) -o $(TARGET) $(OBJECTS) $(LDFLAGS)
 		@echo "Successfully built $(TARGET) for $(uname_s)"
 
-decrypt0r.o : src/decrypt0r.c
-		$(CC) -c src/decrypt0r.c -o src/decrypt0r.o
-
-firmware_tools.o : src/firmware_tools.c
-		$(CC) -c src/firmware_tools.c -o src/firmware_tools.o
+$(SRC)/%.o : $(SRC)/%.c
+	$(CC) -c $< -o $@
 
 clean :
 		rm -rf src/*.o decrypt0r
 
-install :
+install : $(TARGET)
 		cp $(TARGET) /usr/local/bin/

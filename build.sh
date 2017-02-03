@@ -58,8 +58,10 @@ git clone https://github.com/xerub/xpwn.git
 mkdir ~/build
 cd ~/build
 cmake ~/xpwn
-make install
-
+make package
+tar jxvf XPwn-0.5.8-Linux.tar.bz2
+cd XPwn-0.5.8-Linux/
+cp hfsplus ipsw hdutil dmg ticket validate xpwntool /usr/local/bin
 echo "XPwn binaries installed !"
 
 echo "Now installing reimagine..."

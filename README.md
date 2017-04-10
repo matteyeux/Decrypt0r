@@ -1,4 +1,4 @@
-#Decrypt0r
+# Decrypt0r
 
 ```
 Choose what you want to do
@@ -12,7 +12,7 @@ Choose what you want to do
 > 
 ```
 
-###Rootfs decrypting
+### Rootfs decrypting
 
 To decrypt rootfs or other components like IMG3 files you have to grab keys from [iPhonewiki](https://www.theiphonewiki.com/wiki/Firmware_Keys). <br>
 
@@ -33,7 +33,7 @@ Downgrades are already impossible without SHSHs blobs, on devices that do not ha
 Is this feature useless ? <br>
 Yes, but it can still be used. <br>
 
-###IMG3
+### IMG3
 
 To decrypt IMG3 files like kernelcache or iBoot, you have to grab the keys from theiphonewiki <br>
 The first one to add is the largest, and the second one is the iv key (the smallest).<br>
@@ -45,18 +45,18 @@ Decrypt0r now supports IMG4 (or im4P, whatever) files. I added a function which 
 
 You can also decompress compressed iPhone 7 (and other unencrypted kcaches) kernelcache when it asks for firmware just  press enter keys.
 
-###How to build it?
+### How to build it?
 
 To build Decrypt0r just cd to the decryptr0r directory and run `make` <br> 
 
 If you need to build XPwn for Linux, just run `build.sh`.
 OS X users you have to build XPwn yourself, I'll made a bin directory with all the binaries ASAP
 
-###Compatibility
+### Compatibility
 
 Decrypt0r is compatible with Linux & OS X, Windows users, check [Decrypt0r for Windows](https://github.com/matteyeux/Decrypt0r-for-Windows)<br>
 
-###Binaries
+### Binaries
 For people who doesn't want to run my script or are running OS X you have the possibility to download this file which contains OS X, Linux64 & Raspberry Pi binaries<br>
 Download [here](https://www.dropbox.com/s/r6e5fwae2ff7ecv/XPwn%20binaries.zip?dl=0)
 If you want to download an IPSW file from the tool you should install [wget](http://rudix.org/packages/wget.html)

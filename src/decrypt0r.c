@@ -4,7 +4,7 @@ decrypt0r.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "firmware_tools.h"
+#include <include/firmware_tools.h>
 
 int main(int argc, char const *argv[])
 {

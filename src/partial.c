@@ -6,8 +6,8 @@
 #include <zlib.h>
 #include <libgen.h>
 
-#include "common.h"
-#include "partial.h"
+#include <include/common.h>
+#include <include/partial.h>
 
 static size_t dummyReceive(void* data, size_t size, size_t nmemb, void* info) {
 	return size * nmemb;

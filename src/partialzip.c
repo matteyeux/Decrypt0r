@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "common.h"
-#include "partial.h"
+#include <include/common.h>
+#include <include/partial.h>
 
 void callback(ZipInfo* info, CDFile* file, size_t progress) {
 	int percentDone = progress * 100/file->compressedSize;

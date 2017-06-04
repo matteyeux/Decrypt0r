@@ -63,10 +63,11 @@ If you want to download an IPSW file from the tool you should install [wget](htt
 ## Credits
 
 Credits go to :  
-My friend [@Dev__Jam](https://twitter.com/Dev__Jam) for idea and some code. <br>
+My friend [@Dev__Jam](https://twitter.com/Dev__Jam) for initial idea and some code. <br>
 Some functions by  [Lilo Colson](https://twitter.com/Pwn1d) <br>
 Reimagine tool made by [Danzatt](https://twitter.com/danzatt) <br>
 [Callum Jones](https://twitter.com/icj_) for his awesome website ipsw.me & API .<br>
+Joshua Hill for libimg3
 
 Developed by Mathieu Hautebas ([@matteyeux](https://twitter.com/matteyeux)) <br>
 

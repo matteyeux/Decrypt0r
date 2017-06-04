@@ -63,7 +63,11 @@ tar jxvf XPwn-0.5.8-Linux.tar.bz2
 cd XPwn-0.5.8-Linux/
 cp hfsplus ipsw hdutil dmg ticket validate xpwntool /usr/local/bin
 echo "XPwn binaries installed !"
-
+echo "Installing libimg3"
+git clone https://github.com/matteyeux/libcrippy
+cd libcrippy && ./autogen && sudo make install && cd ..
+git clone https://github.com/OpenJailbreak/libimg3.git
+cd libimg3 && ./autogen && sudo make install && cd ..
 echo "Now installing reimagine..."
 
 apt-get -y install libssl-dev:i386 #Should work for reimagine
@@ -88,3 +92,4 @@ cd img4tool/lzfse
 make && make install 
 cd ../
 make && cp img4 /usr/local/bin/
+ldconfig

@@ -26,10 +26,9 @@ Then the program is going to work automaticaly. <br>
 
 If you want to modify rootfs (ex Setup.app) you can use TransMac for Windows, whatever it won't <br>
 
-### Encryption of rootfs and creating a Custom fimware
+### Encrypting rootfs and creating a Custom fimware
 
-You can create a Custom fimware but it's crap. Be patient. <br>
-Downgrades are already impossible without SHSHs blobs, on devices that do not have low level exploits (RIP Limera1n). <br>
+You can create a Custom fimware. You won't be able to restore whith it. <br>
 Is this feature useless ? <br>
 Yes, but it can still be used. <br>
 
@@ -43,13 +42,13 @@ Then follow instructions.<br>
 
 Decrypt0r now supports IMG4 (or im4P, whatever) files. I added a function which checks if the file is an IM4P or not.
 
-You can also decompress compressed iPhone 7 (and other unencrypted kcaches) kernelcache when it asks for firmware just  press enter keys.
+You can also decompress compressed iPhone 7 kernelcache when it asks for firmware just press `[enter]`.
 
 ### How to build it?
 
 To build Decrypt0r just cd to the decryptr0r directory and run `make` <br> 
 
-Run first on Debian like distros `build.sh`. <br>
+To build Xpwn and other stuff run `build.sh` on Debian like distros. <br>
 macOS users can download bins [here](https://www.dropbox.com/s/r6e5fwae2ff7ecv/XPwn%20binaries.zip?dl=0)
 
 ### Compatibility
@@ -60,7 +59,7 @@ Windows users, check [Decrypt0r for Windows](https://github.com/matteyeux/Decryp
 ### Binaries
 For people who doesn't want to run my script or are running OS X you have the possibility to download this file which contains OS X, Linux64 & Raspberry Pi binaries<br>
 Download xpwn bins [here](https://www.dropbox.com/s/r6e5fwae2ff7ecv/XPwn%20binaries.zip?dl=0)
-If you want to download an IPSW file from the tool you should install wget
+
 ## Credits
 
 Credits go to :  

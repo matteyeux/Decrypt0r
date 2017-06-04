@@ -5,7 +5,9 @@
 #include <fcntl.h>
 #include <errno.h>
 
-#include "partial.h"
+#include <include/partial.h>
+#include <include/img3crypt.h>
+
 #define VERSION "1.1.2"
 
 void swag_logo()
@@ -130,6 +132,7 @@ int unziper()
 		fget(firmware, 80);
 		isfilehere(firmware);
 		printf("Extracting firmware in the IPSW folder...\n");
+		/*sudo apt install p7zip-full */
 		sprintf(buildCommand, "7z x -oIPSW %s", firmware); 
 		system(buildCommand);
 	}
@@ -170,10 +173,11 @@ int ipswDownloader()
 		system(link);
 		system("7z x -oIPSW firmware.ipsw");
 	}
+	//need to work on
 	// else if(strcmp(choice1, "component")==0 || strcmp(choice1, "2")==0)
 	// {
 	// 	char* firmwareurl; // "http://api.ipsw.me/v2/" + model +  "/" + version + "/dl";
-	// 	char* path[128], pfilename[15];
+	// 	char path[128], pfilename[15];
 	// 	printf("Model : ");
 	// 	fget(model, 10);
 	// 	printf("Version : ");
@@ -275,13 +279,16 @@ int Ramdisk()
 
 int IMGfile()
 {	
-	char name[120];
-	char buildCommand[1024];
 	char key[80];
 	char keyiv[80];
+	char name[80];
+	char decname[80];
+
+	char buildCommand[1024];
 	char boardID[10];
 	char command[80];
 	char img3_dir[1024];
+
 	unziper();
 	swag_logo();
 
@@ -302,26 +309,25 @@ int IMGfile()
 	
 	printf("Enter the key IV for %s: ", name);
 	fget(keyiv, 80);
-	rename(name, "target");
-
+	
 	if (im4p == 0)
-	{
-		sprintf(buildCommand,"xpwntool target %s.dec -k %s -iv %s -decrypt", name, key, keyiv);
+	{	//decryptimgfile(char* img3_input, char* img3_output, char* iv_str, char* key_str)
+		sprintf(decname, "%s.dec", name);
+		decryptimg3file(name, decname, keyiv, key);
+		//sprintf(buildCommand,"xpwntool target %s.dec -k %s -iv %s -decrypt", name, key, keyiv);
 	}
 	
 	else if (im4p == 1)
-	{
+	{	
+		rename(name, "target");
 		sprintf(buildCommand, "img4 -extra target %s.dec %s%s", name, keyiv, key);
+		system(buildCommand);
+		rename("target", name);
 	}
 
 	else {
 		printf("wat?\n");
 	}
-
-	printf("%s\n", buildCommand);
-	getchar();
-	system(buildCommand);
-	rename("target", name);
 	printf("%s.dec created in %s\n", name,img3_dir);
 
 	return 0;
@@ -329,17 +335,21 @@ int IMGfile()
 
 int DFU_file()
 {
-	char dfu_name[120], buildCommand[1024], key[80], keyiv[80], dfu_dir[80];
+	char buildCommand[1024], dfu_dir[80];
+	char key[80];
+	char keyiv[80];
+	char dfu_name[80];
+	char decname[80];
 
 	unziper();
 	swag_logo();
 
 	printf("Enter the DFU filename : ");
 	fget(dfu_name, 30);
-	
-	sprintf(dfu_dir, "IPSW/Firmware/dfu/");
-	chdir(dfu_dir);
+
+	chdir("IPSW/Firmware/dfu/");
 	isfilehere(dfu_name);
+	
 	check4im4p(dfu_name);
 
 	printf("Enter the key for %s: ", dfu_name);
@@ -348,61 +358,68 @@ int DFU_file()
 	printf("Enter the key IV for %s: ", dfu_name);
 	fget(keyiv, 80);
 
-	rename(dfu_name, "target");
 	if (im4p == 0)
-	{
-		sprintf(buildCommand,"xpwntool target %s.dec -k %s -iv %s -decrypt", dfu_name, key, keyiv);
+	{	
+		sprintf(decname, "%s.dec", dfu_name);
+		decryptimg3file(dfu_name, decname, keyiv, key);
 	}
 	
 	else if (im4p == 1)
 	{
+		rename(dfu_name, "target");
 		sprintf(buildCommand, "img4 -extra target %s.dec %s%s", dfu_name, keyiv, key);
+		system(buildCommand);
+		rename("target", dfu_name);
 	}
-	system(buildCommand);
-	rename("target", dfu_name);
-	printf("%s.dec created in %s\n",dfu_name, dfu_dir);
+	printf("%s.dec created in IPSW/Firmware/dfu/\n",dfu_name);
 	return 0;
 }
 
 int kernelcache()
 {	
-	char name[120], buildCommand[1024], key[80], keyiv[80];
+	char buildCommand[1024];
+	char key[80];
+	char keyiv[80];
+	char kname[80];
+	char decname[80];
 
 	unziper();
 	swag_logo();
-	printf("Enter the kernel filename : ");
-	fget(name, 120);
+	
+	printf("Enter kernel filename : ");
+	fget(kname, 80);
+	printf("good\n");
 	chdir("IPSW");
-	isfilehere(name);
-	check4im4p(name);
-	printf("Enter the key for %s: ", name);
-	fget(key, 80);
+	isfilehere(kname);
+	check4im4p(kname);
+	
+	printf("Enter key for %s: ", kname);
+	fget(key,80);
 
-
-	printf("Enter the key IV for %s: ", name);
+	printf("Enter key IV for %s: ", kname);
 	fget(keyiv, 80);
 
-	rename(name, "target");
-	
 	if (im4p == 0)
-	{
-		sprintf(buildCommand,"xpwntool target %s.dec -k %s -iv %s -decrypt", name, key, keyiv);
+	{	
+		sprintf(decname, "%s.dec", kname);
+		decryptimg3file(kname, decname, keyiv, key);
 	}
 		
 	else if (im4p == 1)
 	{
+		rename(kname, "target");
 		if (strcmp(keyiv, "")==0 && strcmp(keyiv, "")==0)
 		{
-			sprintf(buildCommand, "img4 -image target %s.dec", name);
+			sprintf(buildCommand, "img4 -image target %s.dec", kname);
 		} 
 		else {
-			sprintf(buildCommand, "img4 -extra target %s.dec %s%s", name, keyiv, key);
+			sprintf(buildCommand, "img4 -extra target %s.dec %s%s", kname, keyiv, key);
 		}
+		rename("target", kname);
+		system(buildCommand);
 
 	}
-	system(buildCommand);
-	rename("target", name);
-	printf("%s.dec copied at the folder's root\n", name);
+	printf("%s copied to the root of IPSW folder\n", decname);
 
 	return 0;
 }

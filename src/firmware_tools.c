@@ -8,7 +8,7 @@
 #include <include/partial.h>
 #include <include/img3crypt.h>
 
-#define VERSION "1.1.2"
+#define VERSION "1.2.0"
 
 void swag_logo()
 {

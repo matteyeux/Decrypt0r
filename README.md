@@ -56,9 +56,6 @@ macOS users can download bins [here](https://www.dropbox.com/s/r6e5fwae2ff7ecv/X
 Decrypt0r is compatible with Linux & macOS. <br>
 Windows users, check [Decrypt0r for Windows](https://github.com/matteyeux/Decrypt0r-for-Windows)<br>
 
-### Binaries
-For people who doesn't want to run my script or are running OS X you have the possibility to download this file which contains OS X, Linux64 & Raspberry Pi binaries<br>
-Download xpwn bins [here](https://www.dropbox.com/s/r6e5fwae2ff7ecv/XPwn%20binaries.zip?dl=0)
 
 ## Credits
 

@@ -1,15 +1,13 @@
 # Decrypt0r
 
 ```
-Choose what you want to do
- 1) Decrypt Root Filesystem
- 2) Decrypt Ramdisk
- 3) Decrypt IMG3/IMG4 File
- 4) Decrypt DFU File
- 5) Decrypt Kernelcache
- 6) Grab Keybags
- 7) Patch iBEC/iBSS
-> 
+ ____                             _    ___
+|  _ \  ___  ___ _ __ _   _ _ __ | |_ / _ \ _ __
+| | | |/ _ \/ __| '__| | | | '_ \| __| | | | '__|
+| |_| |  __/ (__| |  | |_| | |_) | |_| |_| | |
+|____/ \___|\___|_|   \__, | .__/ \__|\___/|_|
+ Version 1.2.0        |___/|_| by matteyeux
+
 ```
 
 ### Rootfs decrypting

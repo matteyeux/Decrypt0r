@@ -173,24 +173,24 @@ int ipswDownloader()
 		system(link);
 		system("7z x -oIPSW firmware.ipsw");
 	}
-	//need to work on
-	// else if(strcmp(choice1, "component")==0 || strcmp(choice1, "2")==0)
-	// {
-	// 	char* firmwareurl; // "http://api.ipsw.me/v2/" + model +  "/" + version + "/dl";
-	// 	char path[128], pfilename[15];
-	// 	printf("Model : ");
-	// 	fget(model, 10);
-	// 	printf("Version : ");
-	// 	fget(version, 10);
-	// 	printf("Exact path to file : ");
-	// 	fget(path, 128);
-	// 	printf("Filename : ");
-	// 	fget(pfilename, 15);
-	// 	sprintf(firmwareurl,"http://api.ipsw.me/v2/%s/%s/url/dl",model,version);
-	// 	partial_download(firmwareurl, path, "pfilename");
-	// }
-	else {
+	// need to work on
+	else if(strcmp(choice1, "nothing")==0 || strcmp(choice1, "2")==0)
+	{
 		printf("\n"); //Next
+	}
+	else if(strcmp(choice1, "component")==0 || strcmp(choice1, "3")==0){
+		char *firmwareurl; // "http://api.ipsw.me/v2/" + model +  "/" + version + "/dl";
+		char *path, *pfilename;
+		printf("Model : ");
+		fget(model, 10);
+		printf("Version : ");
+		fget(version, 10);
+		printf("Exact path to file : ");
+		fget(path, 128);
+		printf("Filename : ");
+		fget(pfilename, 15);
+		sprintf(firmwareurl,"http://api.ipsw.me/v2/%s/%s/url/dl",model,version);
+		partial_download((char*)firmwareurl, (char*)path, (char*)pfilename);
 	}
 	return 0;
 }

@@ -47,7 +47,8 @@ You can also decompress compressed iPhone 7 kernelcache when it asks for firmwar
 To build Decrypt0r just cd to the decryptr0r directory and run `make` <br> 
 
 To build Xpwn and other stuff run `build.sh` on Debian like distros. <br>
-macOS users can download bins [here](https://www.dropbox.com/s/r6e5fwae2ff7ecv/XPwn%20binaries.zip?dl=0)
+macOS users sorry there is no more bins available.
+But if you just plan to just decrypt firmware, install libimg3
 
 ### Compatibility
 
